@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/Planten.tsx-3f28d8cc540c4e311e79241d37171d81.res"
+
+[deps]
+
+source_file="res://Planten.tsx"
+dest_files=[ "res://.import/Planten.tsx-3f28d8cc540c4e311e79241d37171d81.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""

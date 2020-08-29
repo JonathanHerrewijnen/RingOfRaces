@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Vloer.tres" type="TileSet" id=1]
+[ext_resource path="res://Planten.tres" type="TileSet" id=2]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 109, 0 )
+
+[node name="regions" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65537, 0, -2752512, 65539, 0, -655360, 65541, 0, -786432, 196609, 0, -2752512, 196611, 0, -655360, 196613, 0, -786432, 327681, 0, -2752512, 327685, 0, -786432 )
+
+[node name="input_background" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65537, 0, -2555904, 65541, 0, -917504, 196609, 0, -2621440, 196613, 0, -851968, 327681, 0, -2686976, 327685, 0, -786432 )
+
+[node name="output_Collision" type="Node2D" parent="."]
+
+[node name="output_Interactive" type="Node2D" parent="."]
+
+[node name="input_Plants" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65539, 0, 0, 196611, 0, -65536 )
