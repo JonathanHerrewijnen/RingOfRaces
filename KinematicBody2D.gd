@@ -8,18 +8,18 @@ var velocity = Vector2()
 func _physics_process(delta):
 	velocity.y += delta * GRAVITY
 
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("move_left"):
 		velocity.x = -WALK_SPEED
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("move_right"):
 		velocity.x =  WALK_SPEED
-	elif Input.is_action_pressed("ui_up"):
+	elif Input.is_action_pressed("move_up"):
 		velocity.y =  -WALK_SPEED
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("move_down"):
 		velocity.y =  WALK_SPEED
 	else:
 		velocity.x = 0
 		velocity.y = 0
-
+		
 	# We don't need to multiply velocity by delta because "move_and_slide" already takes delta time into account.
 
 	# The second parameter of "move_and_slide" is the normal pointing up.
