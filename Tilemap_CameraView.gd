@@ -7,11 +7,14 @@ onready var player = get_node("/root/Map1/Player")
 func _ready():
 	pass
 
-
+var once = true
+var lockedPlayerCamera = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	CameraToPlayer()
-#	TestCamera()
+	if once:
+		AnimateMoveCamera(player.position, Vector2(player.position.x - 10,player.position.y - 10), "position", 2)
+		once = false
 	pass
 
 #Move camera to position
@@ -19,16 +22,18 @@ func MoveCamera(x, y):
 	position.x = x
 	position.y = y
 
+func _on_Tween_tween_completed(object, key):
+	print(object, key)
+	lockedPlayerCamera = false	
 
-func TestCamera():
-	var t = player.position
-	t.x = 100
-	t.y = 100
-	MoveCamera(t.x, t.y)
-#	var tween = get_node("/root/Map1/Tween")
-#	tween.interpolate_property(get_node("/root/Map1/Camera2D"), "position", player.position, t, 200, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	tween.start()
+func AnimateMoveCamera(source, destination, key, time):
+	lockedPlayerCamera = true
+	var tween = get_node("/root/Map1/Tween")
+	tween.interpolate_property(get_node("/root/Map1/Camera2D"), key, source, destination, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	
 
 #Move camera close to player
 func CameraToPlayer():
-	MoveCamera(player.position.x, player.position.y)
+	if lockedPlayerCamera == false:
+		MoveCamera(player.position.x, player.position.y)
