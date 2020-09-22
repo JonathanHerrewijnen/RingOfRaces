@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
+[ext_resource path="res://pictures/animations/Loading/loading_ring.png" type="Texture" id=2]
+[ext_resource path="res://MiscCodes/loading_ring.gd" type="Script" id=3]
+[ext_resource path="res://ring_of_races_font.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 4 )
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,8 +17,14 @@ margin_left = 484.204
 margin_top = 100.226
 margin_right = 679.204
 margin_bottom = 153.226
+custom_fonts/font = SubResource( 1 )
 text = "Play Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="loading_ring" type="Sprite" parent="."]
+position = Vector2( 574.719, 228.63 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
 [connection signal="pressed" from="Btn_PlayGame" to="." method="_on_Btn_PlayGame_pressed"]
