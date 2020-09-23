@@ -47,13 +47,13 @@ func get_global_pos():
 #Move camera to position
 func MoveCamera(x, y):
 	if x < int(screen_size.x / 2):
-		print("passing")
-		return
+		pass
+	else:
+		position.x = x	
 	if y < int(screen_size.y / 2):
-		print("passing")
-		return
-	position.x = x
-	position.y = y
+		pass
+	else:
+		position.y = y
 
 func _on_Tween_tween_completed(object, key):
 	print(object, key)
