@@ -7,7 +7,6 @@ onready var screen_size = self.get_viewport_rect().size
 
 func _ready():
 	calculate_bounds()
-	print(screen_size)
 
 var once = true
 var lockedPlayerCamera = false
@@ -18,6 +17,7 @@ var max_y = 0
 var max_x_pixel = 0
 var max_y_pixel = 0
 
+#function that calculates the borders/bounds of the map
 func calculate_bounds():
 	var used_cells = background_map.get_used_cells()
 	for pos in used_cells:
@@ -38,7 +38,7 @@ func _process(delta):
 	CameraToPlayer()
 	if once:
 		once = false
-		AnimateMoveCamera(player.position, Vector2(player.position.x - 100,player.position.y - 10), "position", 2)
+		#AnimateMoveCamera(player.position, Vector2(player.position.x - 100,player.position.y - 10), "position", 2)
 	pass
 
 func get_global_pos():
@@ -65,8 +65,10 @@ func AnimateMoveCamera(source, destination, key, time):
 	tween.interpolate_property(get_node("/root/Map1/Camera2D"), key, source, destination, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	
-
-#Move camera close to player
 func CameraToPlayer():
 	if lockedPlayerCamera == false:
 		MoveCamera(player.position.x, player.position.y)
+
+func GetExactMapPosition_FromScreen(map_pos, target_pos):
+	
+	pass
