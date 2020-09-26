@@ -54,8 +54,8 @@ visible = false
 position = Vector2( -705.297, -1197.88 )
 
 [node name="MiscButtons" type="TouchScreenButton" parent="Camera2D/Interactive"]
-position = Vector2( 271.615, 948.524 )
-scale = Vector2( 13.4167, 62.239 )
+position = Vector2( 272.559, 948.524 )
+scale = Vector2( 13.402, 62.475 )
 z_index = 12
 normal = ExtResource( 9 )
 action = "ui_end"
@@ -95,8 +95,8 @@ normal = ExtResource( 14 )
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="Camera2D/Interactive/MiscButtons"]
 
 [node name="MoveDown" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( -484.052, 189.285 )
-scale = Vector2( 15.2231, 13.4017 )
+position = Vector2( -540.162, 241.312 )
+scale = Vector2( 16.8785, 7.52285 )
 z_index = 11
 normal = ExtResource( 9 )
 pressed = ExtResource( 8 )
@@ -106,8 +106,8 @@ visibility_mode = 1
 script = ExtResource( 6 )
 
 [node name="MoveRight" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( 488.107, -247.384 )
-scale = Vector2( 15.5578, 7.57654 )
+position = Vector2( 540.075, -301.554 )
+scale = Vector2( 9.78109, 9.42255 )
 z_index = 11
 normal = ExtResource( 3 )
 pressed = ExtResource( 7 )
@@ -116,8 +116,8 @@ visibility_mode = 1
 script = ExtResource( 6 )
 
 [node name="MoveUp" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( -482.992, -298.537 )
-scale = Vector2( 15.1705, 12.107 )
+position = Vector2( -540.152, -301.536 )
+scale = Vector2( 16.8785, 8.46854 )
 z_index = 11
 normal = ExtResource( 9 )
 pressed = ExtResource( 8 )
@@ -126,8 +126,8 @@ visibility_mode = 1
 script = ExtResource( 6 )
 
 [node name="MoveLeft" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( -619.603, -265.395 )
-scale = Vector2( 16.4151, 8.27088 )
+position = Vector2( -618.513, -301.504 )
+scale = Vector2( 9.79458, 9.42181 )
 z_index = 11
 z_as_relative = false
 normal = ExtResource( 3 )
