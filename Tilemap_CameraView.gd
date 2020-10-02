@@ -69,6 +69,3 @@ func CameraToPlayer():
 	if lockedPlayerCamera == false:
 		MoveCamera(player.position.x, player.position.y)
 
-func GetExactMapPosition_FromScreen(map_pos, target_pos):
-	
-	pass
