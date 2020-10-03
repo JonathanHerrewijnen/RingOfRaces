@@ -6,6 +6,7 @@ const interaction_circle_size = 150
 onready var background_map  = get_node("/root/Map1/background")
 onready var player = get_node("/root/Map1/Player")
 onready var cell_size = background_map._get_cell_size()
+onready var plants_map = get_node("/root/Map1/interaction_map")
 
 var velocity = Vector2()
 
@@ -27,9 +28,13 @@ func _physics_process(delta):
 		velocity.y = 0
 	move_and_slide(velocity, Vector2(0, -1))
 
+#Handles interaction with the map
 func _interaction_process():
 	if Input.is_action_pressed("map_interaction") or Input.is_key_pressed((KEY_SPACE)):
-		background_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), -1)
+		var x = plants_map.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
+#		if x > 0:
+#			print("woo")
+		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 10) 
 
 func _input(event):
    # Mouse in viewport coordinates.
