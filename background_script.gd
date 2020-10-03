@@ -20,15 +20,4 @@ func _unhandled_input(event):
 	if event == Input.action_press("map_interaction"):
 		if(pl_tile != -1):
 			set_cellv(pl_pos_tile, -1)
-			
-#			var mouse_pos = get_viewport().get_mouse_position()
-#	var tile_pos = map_to_world(world_to_map(mouse_pos))
-##	print(tile_pos)
-#	#var tile = get_cell(32,32)
-#	var tile = get_cell(mouse_pos.x / cell_size.x, mouse_pos.y / cell_size.y)
-#	if(tile != -1):
-#		set_cell(mouse_pos.x / cell_size.x, mouse_pos.y / cell_size.y, -1)
-##		clear()
-##		print(tile)
-
 

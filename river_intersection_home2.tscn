@@ -149,7 +149,7 @@ flip_h = true
 shape = SubResource( 1 )
 one_way_collision_margin = 96.0
 
-[node name="MapInteraction" type="TouchScreenButton" parent="Player"]
+[node name="MapInteraction" type="TouchScreenButton" parent="Player/CollisionShape2D"]
 show_behind_parent = true
 position = Vector2( -150, -150 )
 scale = Vector2( 15, 15 )
@@ -161,5 +161,5 @@ action = "map_interaction"
 [connection signal="pressed" from="Camera2D/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]
-[connection signal="released" from="Player/MapInteraction" to="Player" method="_physics_process"]
+[connection signal="released" from="Player/CollisionShape2D/MapInteraction" to="Player" method="_interaction_process"]
 [connection signal="tween_completed" from="Tween" to="Camera2D" method="_on_Tween_tween_completed"]
