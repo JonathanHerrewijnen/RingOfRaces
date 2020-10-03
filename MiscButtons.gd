@@ -6,6 +6,7 @@ func _physics_process(delta):
 		show()
 	elif Input.is_action_pressed("ui_end"):
 		hide();
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
