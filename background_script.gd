@@ -1,5 +1,7 @@
 extends TileMap
 
+
+
 onready var player = get_node("/root/Map1/Player")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +20,7 @@ func _unhandled_input(event):
 	if event == Input.action_press("map_interaction"):
 		if(pl_tile != -1):
 			set_cellv(pl_pos_tile, -1)
+
 
 func _on_Inventory_pressed():
 	get_tree().change_scene("res://MiscScenes/Inventory.tscn")

@@ -167,6 +167,7 @@ shape = SubResource( 2 )
 action = "map_interaction"
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_pressed"]
 [connection signal="pressed" from="Camera2D/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]

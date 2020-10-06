@@ -1,5 +1,7 @@
 extends Panel
 
+#Many thanks to Arkeve! https://github.com/arkeve
+
 #var default_tex = preload("res://item_slot_default_background.png")
 #var empty_tex = preload("res://item_slot_empty_background.png")
 
