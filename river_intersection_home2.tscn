@@ -60,12 +60,14 @@ script = ExtResource( 16 )
 position = Vector2( -705.297, -1197.88 )
 
 [node name="MiscButtons" type="TouchScreenButton" parent="Camera2D/Interactive"]
+visible = false
 position = Vector2( 272.559, 948.524 )
 scale = Vector2( 13.402, 62.475 )
 z_index = 12
 normal = ExtResource( 9 )
 action = "ui_end"
 script = ExtResource( 10 )
+
 [node name="GameButtons" type="Node2D" parent="Camera2D/Interactive"]
 
 [node name="Inventory" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
@@ -73,7 +75,6 @@ position = Vector2( 1184.03, 899.812 )
 scale = Vector2( 1.23042, 1.11552 )
 z_index = 13
 normal = ExtResource( 11 )
-action = "open_inventory"
 action = "inventory_button"
 
 [node name="Crafting" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
@@ -103,8 +104,6 @@ z_index = 13
 normal = ExtResource( 14 )
 
 [node name="MoveDown" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( -540.162, 241.312 )
-scale = Vector2( 16.8785, 7.52285 )
 position = Vector2( -480.965, 178.192 )
 scale = Vector2( 14.9928, 14.9987 )
 z_index = 11
@@ -116,8 +115,6 @@ visibility_mode = 1
 script = ExtResource( 6 )
 
 [node name="MoveRight" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( 540.075, -301.554 )
-scale = Vector2( 9.78109, 9.42255 )
 position = Vector2( 478.572, -173.651 )
 scale = Vector2( 16.7497, 5.49206 )
 z_index = 11
@@ -128,8 +125,6 @@ visibility_mode = 1
 script = ExtResource( 6 )
 
 [node name="MoveUp" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( -540.152, -301.536 )
-scale = Vector2( 16.8785, 8.46854 )
 position = Vector2( -480.936, -298.537 )
 scale = Vector2( 14.9907, 15.5676 )
 z_index = 11
@@ -140,8 +135,6 @@ visibility_mode = 1
 script = ExtResource( 6 )
 
 [node name="MoveLeft" type="TouchScreenButton" parent="Camera2D"]
-position = Vector2( -618.513, -301.504 )
-scale = Vector2( 9.79458, 9.42181 )
 position = Vector2( -615.955, -175.335 )
 scale = Vector2( 16.8861, 5.52137 )
 z_index = 11
@@ -174,7 +167,6 @@ shape = SubResource( 2 )
 action = "map_interaction"
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="pressed" from="Camera2D/Interactive/MiscButtons/Inventory" to="background" method="_on_Inventory_pressed"]
 [connection signal="pressed" from="Camera2D/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]
