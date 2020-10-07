@@ -21,7 +21,8 @@ config/icon="res://pictures/gui/buttons/delete_ringofraces.png"
 
 [autoload]
 
-Global="*res://Global.tscn"
+Global="*res://Global.gd"
+Database="*res://Storage/Database.gd"
 
 [display]
 

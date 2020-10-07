@@ -10,14 +10,23 @@ var empty_style: StyleBoxTexture = null
 
 var ItemClass = preload("res://MiscScenes/Item.tscn")
 var item = null
+var id = 0
+#onready var id = int(self.name[4:0])
 
 func _ready():
+	if self.name.length() == 5:
+		self.id = int(self.name.right(1)) - 1
+	else:
+		self.id = int(self.name.right(2)) - 1
 	default_style = StyleBoxTexture.new()
 	empty_style = StyleBoxTexture.new()
 	#default_style.texture = default_tex
 	#empty_style.texture = empty_tex
-	
-	if randi() % 2 == 0:
+#	print(self.get)
+#	if randi() % 2 == 0:
+	print(Global.player_inventory_items)
+	print(Global.player_inventory_items[self.id])
+	if Global.player_inventory_items[self.id] != null:
 		item = ItemClass.instance()
 		add_child(item)
 #	refresh_style()

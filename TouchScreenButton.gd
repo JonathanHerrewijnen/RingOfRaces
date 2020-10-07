@@ -1,6 +1,6 @@
 extends TouchScreenButton
 
-onready var ShowInventory = get_node("res://Global.gd")
+onready var ShowInventory = Global.ShowInventory
 
 func _input(always):
 	ShowInventory = 1;

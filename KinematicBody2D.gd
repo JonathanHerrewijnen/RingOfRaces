@@ -47,3 +47,5 @@ func _input(event):
 		if Input.is_action_pressed("map_interaction"):
 			pass
 			
+func _ready():
+	Global.player_inventory_items = Database.GetInventoryItems()
