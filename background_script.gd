@@ -23,4 +23,4 @@ func _unhandled_input(event):
 
 
 func _on_Inventory_pressed():
-	get_tree().change_scene("res://MiscScenes/Inventory.tscn")
+	Global.GoToScene("inventory_screen")

@@ -28,16 +28,14 @@ func _physics_process(delta):
 		velocity.x = 0
 		velocity.y = 0
 	move_and_slide(velocity, Vector2(0, -1))
-	if(interaction.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y)) == -1):
-		interaction.clear()
-		interaction.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 0)
+#	if(interaction.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y)) == -1):
+#		interaction.clear()
+#		interaction.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 0)
 
 #Handles interaction with the map
 func _interaction_process():
 	if Input.is_action_pressed("map_interaction") or Input.is_key_pressed((KEY_SPACE)):
 		var x = plants_map.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
-#		if x > 0:
-#			print("woo")
 		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 10) 
 
 func _input(event):

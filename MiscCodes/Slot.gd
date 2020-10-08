@@ -23,11 +23,9 @@ func _ready():
 	#default_style.texture = default_tex
 	#empty_style.texture = empty_tex
 #	print(self.get)
-#	if randi() % 2 == 0:
-	print(Global.player_inventory_items)
-	print(Global.player_inventory_items[self.id])
 	if Global.player_inventory_items[self.id] != null:
 		item = ItemClass.instance()
+		item.set("id", self.id)
 		add_child(item)
 #	refresh_style()
 		

@@ -10,11 +10,38 @@ var verbose = true
 func _ready():
 	pass # Replace with function body.
 
+func CreateWorldDatabase():
+	print("Creating new database")
+	var player_inventory : Dictionary = Dictionary()
+	player_inventory["id"] = {"data_type":"int", "primary_key": true, "not_null": true} #slot id
+	player_inventory["item_id"] = {"data_type":"int", "not_null": true} #item id
+	player_inventory["item_name"] = {"data_type":"text", "not_null": true} #item name
+	player_inventory["amount"] = {"data_type":"int", "not_null": true} #amount
+	player_inventory["shortdesc"] = {"data_type":"char(80)", "not_null": true} #short description
+	db.create_table("player_inventory", player_inventory)
+	var items : Dictionary = Dictionary()
+	for i in range(40):
+		items["id"] = i
+		items["item_id"] = 0
+		items["item_name"] = "No Item"
+		items["amount"] = 0
+		items["shortdesc"] = "No item here"
+
+		# Insert a new row in the table
+		db.insert_row("player_inventory", items)
+		items.clear()
+
 func OpenConnection():
 	self.db = SQLite.new()
+	var file = File.new()
 	self.db.path = path
 	self.db.verbose_mode = verbose
+	var create = false
+	if !file.file_exists(path):
+		create = true
 	self.db.open_db()
+	if create:	
+		CreateWorldDatabase()
 
 func OpenConnectionIfClosed():
 	if self.db == null:
@@ -23,8 +50,7 @@ func OpenConnectionIfClosed():
 func GetInventoryItems():
 	OpenConnectionIfClosed()
 	var ret = []
-	for x in range(40):
-		ret.append([x, "test"])
+	ret = db.select_rows("player_inventory", "",["*"])
 	return ret
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
