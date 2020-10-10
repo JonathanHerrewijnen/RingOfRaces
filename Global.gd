@@ -6,10 +6,22 @@ var player_inventory_items = []
 var river_intersection_home_2 = preload("res://river_intersection_home2.tscn").instance()
 var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 var current_scene = null
-#func _add_a_scene_manually():
-#    # This is like autoloading the scene, only
-#    # it happens after already loading the main scene.
-#    get_tree().get_root().add_child(simultaneous_scene)
+
+func AddInventoryItem(itemid, amount):
+	for x in range(40):
+		if(player_inventory_items[x].item_id == itemid):
+			player_inventory_items[x].amount += amount
+			return
+	#if we reached here then no exisiting item is found and we iterate the array again
+	print("adding item")
+	for x in range(40):
+		if(player_inventory_items[x].item_id == 0):
+			player_inventory_items[x].id = x
+			player_inventory_items[x].item_name = "name"
+			player_inventory_items[x].shortdesc = "desc"
+			player_inventory_items[x].item_id = itemid
+			player_inventory_items[x].amount = amount
+			return
 
 func GoToScene(scene):
 	if current_scene != null:

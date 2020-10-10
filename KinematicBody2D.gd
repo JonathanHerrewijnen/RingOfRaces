@@ -32,18 +32,23 @@ func _physics_process(delta):
 #		interaction.clear()
 #		interaction.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 0)
 
-#Handles interaction with the map
+func InteractWithCell():
+	var plant_cell = plants_map.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
+	var background_cell = background_map.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
+	var interaction_cell = interaction.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
+	print(plant_cell)
+	if plant_cell == 1:
+		Global.AddInventoryItem(3, 1)
+		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 4) 
+#	plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 4) 
+	
 func _interaction_process():
 	if Input.is_action_pressed("map_interaction") or Input.is_key_pressed((KEY_SPACE)):
-		var x = plants_map.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
-		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 10) 
+		InteractWithCell()
+#		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), 10) 
 
 func _input(event):
-   # Mouse in viewport coordinates.
-	if event is InputEventMouseButton:
-		var pos = event.position
-		if Input.is_action_pressed("map_interaction"):
-			pass
+	pass
 			
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems()

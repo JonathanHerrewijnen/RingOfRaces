@@ -14,6 +14,7 @@ font_data = ExtResource( 4 )
 script = ExtResource( 1 )
 
 [node name="loading_ring" type="Sprite" parent="."]
+visible = false
 position = Vector2( 574.719, 228.63 )
 z_index = 1
 texture = ExtResource( 2 )

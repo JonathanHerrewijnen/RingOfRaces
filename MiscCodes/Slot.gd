@@ -27,6 +27,7 @@ func _ready():
 		item = ItemClass.instance()
 		item.set("id", self.id)
 		add_child(item)
+
 #	refresh_style()
 		
 #func refresh_style():
