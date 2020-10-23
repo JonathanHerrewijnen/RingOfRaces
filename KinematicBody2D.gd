@@ -53,13 +53,13 @@ func _input(event):
 
 func AnimationOnInteraction(Item):
 	print(Item, "Animation")
-	var img = load("res://pictures/inventory_iconpictures/food_items/herbs/saffron.png")
-	$Sprite.draw_texture(img, Vector2(self.position.x/cell_size.x, self.position.y/cell_size.y))
-	
-	#This works, but changes the sprite..
-	#$Sprite.set_texture(img)
-	#img.create(128, 128, false, "res://pictures/inventory_iconpictures/food_items/herbs/saffron.png")
-	pass
+	var itemimage = TextureRect.new()	
+	itemimage.texture = load("res://pictures/inventory_iconpictures/food_items/herbs/saffron.png")
+	itemimage.set_position(Vector2(randf()*20-40, randf()*40-20))
+	add_child(itemimage)
+	yield(get_tree().create_timer(1.0), "timeout")
+	remove_child(itemimage)
 			
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems()
+	
