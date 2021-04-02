@@ -60,8 +60,8 @@ func _on_Tween_tween_completed(object, key):
 	lockedPlayerCamera = false	
 
 func AnimateMoveCamera(source, destination, key, time):
-	lockedPlayerCamera = true
 	var tween = get_node("/root/Map1/Tween")
+	lockedPlayerCamera = true
 	tween.interpolate_property(get_node("/root/Map1/Camera2D"), key, source, destination, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	
