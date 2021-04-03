@@ -2,12 +2,42 @@
 
 [ext_resource path="res://pictures/gui/backgrounds/inventory/inventory_background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Inventory_Script.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Inventory.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/TextureRect2.gd" type="Script" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+#func _draw():
+#	var center = Vector2(200, 200)
+#	var radius = 80
+#	var angle_from = 75
+#	var angle_to = 195
+#	var color = Color(1.0, 0.0, 0.0)
+#	draw_circle_arc(center, radius, angle_from, angle_to, color)
+#
+#func draw_circle_arc(center, radius, angle_from, angle_to, color):
+#	var nb_points = 32
+#	var points_arc = PoolVector2Array()
+#
+#	for i in range(nb_points + 1):
+#		var angle_point = deg2rad(angle_from + i * (angle_to-angle_from) / nb_points - 90)
+#		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
+#
+#	for index_point in range(nb_points):
+#		draw_line(points_arc[index_point], points_arc[index_point + 1], color)
+
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [node name="Inventory" type="Node2D"]
 z_index = 1
-script = ExtResource( 3 )
+script = SubResource( 1 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 40.0
