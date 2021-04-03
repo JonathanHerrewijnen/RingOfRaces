@@ -44,6 +44,19 @@ func _input(event):
 	pass
 
 func _ready():
+	CheckDBInUserDir()
 	get_tree().get_root().add_child(river_intersection_home_2)
 	get_tree().get_root().add_child(inventory_screen)
+	pass
+	
+func CheckDBInUserDir():
+	var file2Check = File.new()
+	if file2Check.file_exists("user://gdsqlite.gdns"):
+		print("File exist! Doing nothing")
+		return
+	else:
+		var dir = Directory.new();
+		dir.copy("res://addons/godot-sqlite/bin/gdsqlite.gdns","user://gdsqlite.gdns")
+		dir.make_dir("user://Storage/")
+		print("Database not found, making one!")
 	pass
