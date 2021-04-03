@@ -58,7 +58,7 @@ func MoveCamera(x, y):
 func _on_Tween_tween_completed(object, key):
 	print(object, key)
 	lockedPlayerCamera = false	
-
+	
 func AnimateMoveCamera(source, destination, key, time):
 	var tween = get_node("/root/Map1/Tween")
 	lockedPlayerCamera = true
