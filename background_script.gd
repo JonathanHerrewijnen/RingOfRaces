@@ -16,6 +16,5 @@ func _unhandled_input(event):
 		if(pl_tile != -1):
 			set_cellv(pl_pos_tile, -1)
 
-
 func _on_Inventory_pressed():
 	Global.GoToScene("inventory_screen")

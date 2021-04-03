@@ -12,6 +12,7 @@ var dev_stats = true
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
 		if(player_inventory_items[x].item_id == itemid):
+			print(str(player_inventory_items[x]))
 			player_inventory_items[x].amount += amount
 			return
 	#if we reached here then no exisiting item is found and we iterate the array again
@@ -32,6 +33,7 @@ func GoToScene(scene):
 			current_scene = river_intersection_home_2
 			get_tree().get_root().add_child(river_intersection_home_2)
 		"inventory_screen":
+			inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 			current_scene = inventory_screen
 			get_tree().get_root().add_child(inventory_screen)
 
