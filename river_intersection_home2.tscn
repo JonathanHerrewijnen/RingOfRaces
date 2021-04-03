@@ -177,9 +177,15 @@ scale = Vector2( 1.73434, 1.80493 )
 z_index = 13
 normal = ExtResource( 14 )
 
+<<<<<<< HEAD
 [node name="MoveDown" type="TouchScreenButton" parent="Camera2D"]
 position = Vector2( -480.965, 177.248 )
 scale = Vector2( 14.9928, 15.4117 )
+=======
+[node name="MoveDown" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
+position = Vector2( 224.332, 1376.07 )
+scale = Vector2( 14.9928, 14.9987 )
+>>>>>>> a86a5ed396e8b5af82563c3405f7d58bf75fc5a9
 z_index = 11
 normal = ExtResource( 9 )
 pressed = ExtResource( 8 )
@@ -188,9 +194,15 @@ action = "move_down"
 visibility_mode = 1
 script = ExtResource( 6 )
 
+<<<<<<< HEAD
 [node name="MoveRight" type="TouchScreenButton" parent="Camera2D"]
 position = Vector2( 478.572, -180.258 )
 scale = Vector2( 17.2806, 5.66904 )
+=======
+[node name="MoveRight" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
+position = Vector2( 1183.87, 1024.23 )
+scale = Vector2( 16.7497, 5.49206 )
+>>>>>>> a86a5ed396e8b5af82563c3405f7d58bf75fc5a9
 z_index = 11
 normal = ExtResource( 3 )
 pressed = ExtResource( 7 )
@@ -198,8 +210,13 @@ action = "move_right"
 visibility_mode = 1
 script = ExtResource( 6 )
 
+<<<<<<< HEAD
 [node name="MoveUp" type="TouchScreenButton" parent="Camera2D"]
 position = Vector2( -479.063, -300.979 )
+=======
+[node name="MoveUp" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
+position = Vector2( 224.361, 899.343 )
+>>>>>>> a86a5ed396e8b5af82563c3405f7d58bf75fc5a9
 scale = Vector2( 14.9907, 15.5676 )
 z_index = 11
 normal = ExtResource( 9 )
@@ -208,8 +225,13 @@ action = "move_up"
 visibility_mode = 1
 script = ExtResource( 6 )
 
+<<<<<<< HEAD
 [node name="MoveLeft" type="TouchScreenButton" parent="Camera2D"]
 position = Vector2( -615.955, -175.807 )
+=======
+[node name="MoveLeft" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
+position = Vector2( 89.342, 1022.54 )
+>>>>>>> a86a5ed396e8b5af82563c3405f7d58bf75fc5a9
 scale = Vector2( 16.8861, 5.52137 )
 z_index = 11
 z_as_relative = false
@@ -219,6 +241,20 @@ shape_centered = false
 action = "move_left"
 visibility_mode = 1
 script = ExtResource( 6 )
+
+[node name="dev_statistics" type="MarginContainer" parent="Camera2D"]
+margin_left = -615.0
+margin_top = -300.0
+margin_right = 614.0
+margin_bottom = 297.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fps_stats" type="Label" parent="Camera2D/dev_statistics"]
+margin_top = 291.0
+margin_right = 1229.0
+margin_bottom = 305.0
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 700, 1200 )
@@ -242,8 +278,8 @@ action = "map_interaction"
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_pressed"]
-[connection signal="pressed" from="Camera2D/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
-[connection signal="pressed" from="Camera2D/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
-[connection signal="pressed" from="Camera2D/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]
+[connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
+[connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
+[connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="released" from="Player/CollisionShape2D/MapInteraction" to="Player" method="_interaction_process"]
 [connection signal="tween_completed" from="Tween" to="Camera2D" method="_on_Tween_tween_completed"]

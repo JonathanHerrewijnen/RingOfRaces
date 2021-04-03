@@ -6,6 +6,8 @@ var player_inventory_items = []
 var river_intersection_home_2 = preload("res://river_intersection_home2.tscn").instance()
 var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 var current_scene = null
+var current_camera = null
+var dev_stats = true
 
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
@@ -22,7 +24,6 @@ func AddInventoryItem(itemid, amount):
 			player_inventory_items[x].shortdesc = "desc"
 			player_inventory_items[x].item_id = itemid
 			player_inventory_items[x].amount = amount
-			return
 
 func GoToScene(scene):
 	if current_scene != null:
@@ -31,7 +32,6 @@ func GoToScene(scene):
 		"river_intersection_home_2":
 			current_scene = river_intersection_home_2
 			get_tree().get_root().add_child(river_intersection_home_2)
-			 #.change_scene_to(river_intersection_home_2)
 		"inventory_screen":
 			inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 			current_scene = inventory_screen
@@ -48,6 +48,7 @@ func _ready():
 	get_tree().get_root().add_child(river_intersection_home_2)
 	get_tree().get_root().add_child(inventory_screen)
 	pass
+<<<<<<< HEAD
 	
 func CheckDBInUserDir():
 	var file2Check = File.new()
@@ -60,3 +61,14 @@ func CheckDBInUserDir():
 		dir.make_dir("user://Storage/")
 		print("Database not found, making one!")
 	pass
+=======
+
+func Log(msg, level=1):
+	match level:
+		1:
+			print("[Log]" + msg)
+		2:
+			print("[Warn]" + msg)
+		3:
+			print("[Err]" + msg)
+>>>>>>> a86a5ed396e8b5af82563c3405f7d58bf75fc5a9

@@ -44,7 +44,7 @@ func OpenConnection():
 	if !file.file_exists(path):
 		create = true
 	self.db.open_db()
-	if create:	
+	if create:
 		CreateWorldDatabase()
 
 func OpenConnectionIfClosed():
@@ -56,6 +56,13 @@ func GetInventoryItems():
 	var ret = []
 	ret = db.select_rows("player_inventory", "",["*"])
 	return ret
+	
+func SaveInventory(inventory):
+	if(inventory == null or len(inventory) != 40):
+		Global.Log("Bad inventory save!", 3)
+		return
+	OpenConnectionIfClosed()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

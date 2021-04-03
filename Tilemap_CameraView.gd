@@ -7,6 +7,8 @@ onready var screen_size = self.get_viewport_rect().size
 
 func _ready():
 	calculate_bounds()
+	Global.current_camera = self
+	$dev_statistics.visible = Global.dev_stats
 
 var once = true
 var lockedPlayerCamera = false
@@ -35,6 +37,8 @@ func calculate_bounds():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(Global.dev_stats):
+		$dev_statistics/fps_stats.text = "FPS: " + str(Performance.get_monitor(Performance.TIME_FPS))
 	CameraToPlayer()
 	if once:
 		once = false
@@ -57,8 +61,13 @@ func MoveCamera(x, y):
 
 func _on_Tween_tween_completed(object, key):
 	print(object, key)
+<<<<<<< HEAD
 	lockedPlayerCamera = false	
 	
+=======
+	lockedPlayerCamera = false
+
+>>>>>>> a86a5ed396e8b5af82563c3405f7d58bf75fc5a9
 func AnimateMoveCamera(source, destination, key, time):
 	var tween = get_node("/root/Map1/Tween")
 	lockedPlayerCamera = true
@@ -69,4 +78,5 @@ func CameraToPlayer():
 	if lockedPlayerCamera == false:
 		MoveCamera(player.position.x, player.position.y)
 
-
+func Update():
+	CameraToPlayer()
