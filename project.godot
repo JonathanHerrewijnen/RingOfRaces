@@ -105,6 +105,11 @@ open_inventory={
 
 pointing/emulate_touch_from_mouse=true
 
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+
 [tiled_importer]
 
 enable_json_format=true

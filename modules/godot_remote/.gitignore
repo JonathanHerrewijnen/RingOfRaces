@@ -1,0 +1,39 @@
+# SConstruct
+*.dblite
+__pycache__
+*.pyc
+
+# Visual Studio Cache
+.vs/
+
+# VSCode Cache
+.vscode/
+
+# Binaries
+*.obj
+*.iobj
+*.so
+*.dll
+*.o
+*.dylib
+*.pdb
+*.ipdb
+*.ilk
+*.exe
+*.exp
+*.lib
+*.vcxproj.filters
+*.vcxproj.user
+*.os
+*.out
+api.json
+.import/
+.mono/
+obj/
+libs/
+bin/
+
+# exist only for testing
+test.gd
+
+godot_remote_client/AssetsInSuperSecureAndUn1queF0lder/Textures/SVG/*.png

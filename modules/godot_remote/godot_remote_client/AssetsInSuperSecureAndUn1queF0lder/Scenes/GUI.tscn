@@ -1,0 +1,395 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scripts/GodotRemoteClient.gd" type="Script" id=1]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Styles/NormalLight.tres" type="DynamicFont" id=2]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scenes/GRStats.tscn" type="PackedScene" id=3]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Styles/MainTheme.tres" type="Theme" id=4]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Textures/tap_screen.png" type="Texture" id=5]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scenes/GRSettings.tscn" type="PackedScene" id=6]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scenes/CustomPopupTextInput.tscn" type="PackedScene" id=7]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scripts/PlsRatePopup.gd" type="Script" id=8]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scripts/PlsSupportPopup.gd" type="Script" id=9]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scripts/Changelog.gd" type="Script" id=10]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.133333, 0.164706, 0.188235, 0.815686 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0901961, 0.109804, 0.12549, 0.847059 )
+corner_detail = 1
+
+[sub_resource type="Theme" id=2]
+default_font = ExtResource( 2 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+func _pressed() -> void:
+	OS.shell_open(\"https://github.com/DmitriySalnikov/GodotRemote#godot-remote\")
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+func _pressed() -> void:
+	get_parent().get_parent().hide()
+"
+
+[node name="GodotRemote" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundTouchHint" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="BackgroundTouchHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundTouchHint/Panel"]
+self_modulate = Color( 0.921569, 0.921569, 0.921569, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 33.0
+margin_top = 33.0
+margin_right = -33.0
+margin_bottom = -33.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource( 5 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stream" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 2
+mouse_filter = 1
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GRStats" parent="Stats" instance=ExtResource( 3 )]
+margin_right = 96.0
+margin_bottom = 64.0
+
+[node name="GRSettings" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_bottom = 0.0
+
+[node name="CustomPopupTextInput" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="PlsSupportPopup" type="WindowDialog" parent="."]
+visible = true
+margin_left = -838.665
+margin_top = 424.185
+margin_right = -138.665
+margin_bottom = 559.185
+rect_min_size = Vector2( 500, 135 )
+window_title = "Do you like this app?"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PlsSupportPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PlsSupportPopup/HBoxContainer"]
+margin_top = 1.0
+margin_right = 668.0
+margin_bottom = 47.0
+size_flags_vertical = 6
+text = "Please support the developer"
+align = 1
+valign = 1
+
+[node name="Control" type="Control" parent="PlsSupportPopup/HBoxContainer"]
+margin_top = 53.0
+margin_right = 668.0
+margin_bottom = 53.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlsSupportPopup/HBoxContainer"]
+margin_top = 57.0
+margin_right = 668.0
+margin_bottom = 103.0
+
+[node name="Button" type="Button" parent="PlsSupportPopup/HBoxContainer/HBoxContainer"]
+margin_right = 332.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "Support"
+
+[node name="Button2" type="Button" parent="PlsSupportPopup/HBoxContainer/HBoxContainer"]
+margin_left = 336.0
+margin_right = 668.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "Not now"
+
+[node name="Changelog" type="PopupPanel" parent="."]
+visible = true
+margin_left = -1562.0
+margin_top = 101.0
+margin_right = -873.0
+margin_bottom = 641.0
+rect_min_size = Vector2( 500, 540 )
+popup_exclusive = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Changelog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Changelog/HBoxContainer"]
+margin_right = 657.0
+margin_bottom = 46.0
+text = "Godot Remote Updated"
+align = 1
+
+[node name="Control" type="ScrollContainer" parent="Changelog/HBoxContainer"]
+margin_top = 50.0
+margin_right = 657.0
+margin_bottom = 458.0
+size_flags_vertical = 3
+
+[node name="ListOfChanges" type="Label" parent="Changelog/HBoxContainer/Control"]
+margin_right = 657.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+text = "         don't forget to write a changelog..."
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Changelog/HBoxContainer"]
+margin_top = 462.0
+margin_right = 657.0
+margin_bottom = 508.0
+
+[node name="Button" type="Button" parent="Changelog/HBoxContainer/HBoxContainer"]
+margin_right = 240.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "Okay, I get it!"
+
+[node name="Button2" type="Button" parent="Changelog/HBoxContainer/HBoxContainer"]
+margin_left = 244.0
+margin_right = 657.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "How do I update the server?"
+
+[node name="PlsRatePopup" type="WindowDialog" parent="."]
+visible = true
+margin_left = -839.331
+margin_top = 100.887
+margin_right = -141.331
+margin_bottom = 362.887
+rect_min_size = Vector2( 500, 135 )
+popup_exclusive = true
+window_title = "Rate This App"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PlsRatePopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PlsRatePopup/HBoxContainer"]
+margin_top = 65.0
+margin_right = 666.0
+margin_bottom = 111.0
+size_flags_vertical = 6
+text = "Do you want to rate this app?"
+align = 1
+valign = 1
+
+[node name="Control" type="Control" parent="PlsRatePopup/HBoxContainer"]
+margin_top = 180.0
+margin_right = 666.0
+margin_bottom = 180.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlsRatePopup/HBoxContainer"]
+margin_top = 184.0
+margin_right = 666.0
+margin_bottom = 230.0
+
+[node name="yes" type="Button" parent="PlsRatePopup/HBoxContainer/HBoxContainer"]
+margin_right = 219.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "Yes"
+
+[node name="no" type="Button" parent="PlsRatePopup/HBoxContainer/HBoxContainer"]
+margin_left = 223.0
+margin_right = 442.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "No, thanks"
+
+[node name="later" type="Button" parent="PlsRatePopup/HBoxContainer/HBoxContainer"]
+margin_left = 446.0
+margin_right = 666.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+text = "Not now"
+
+[node name="FirstLaunchHint" type="PopupPanel" parent="."]
+visible = true
+margin_left = -1558.0
+margin_top = 699.0
+margin_right = -430.0
+margin_bottom = 1368.0
+rect_min_size = Vector2( 700, 503 )
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBox" type="VBoxContainer" parent="FirstLaunchHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FirstLaunchHint/VBox"]
+margin_right = 1112.0
+margin_bottom = 46.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Welcome"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="FirstLaunchHint/VBox"]
+margin_top = 110.0
+margin_right = 1112.0
+margin_bottom = 238.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 6
+text = "THIS IS NOT A GAME!
+Godot Remote gives you ability to control your Godot Engine projects remotely over WiFi or USB."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="FirstLaunchHint/VBox"]
+margin_top = 303.0
+margin_right = 1112.0
+margin_bottom = 349.0
+text = "Open the documentation page"
+script = SubResource( 3 )
+
+[node name="Label2" type="Label" parent="FirstLaunchHint/VBox"]
+margin_top = 434.0
+margin_right = 1112.0
+margin_bottom = 521.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 6
+text = "To reopen this screen, click on the 'Godot Remote' version in settings.
+To open app settings touch the screen with %d fingers at once."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="FirstLaunchHint/VBox"]
+margin_top = 607.0
+margin_right = 1112.0
+margin_bottom = 653.0
+text = "Okay, I get it!"
+script = SubResource( 4 )
+
+[connection signal="pressed" from="PlsSupportPopup/HBoxContainer/HBoxContainer/Button" to="PlsSupportPopup" method="_on_Button_pressed"]
+[connection signal="pressed" from="PlsSupportPopup/HBoxContainer/HBoxContainer/Button2" to="PlsSupportPopup" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Changelog/HBoxContainer/HBoxContainer/Button" to="Changelog" method="_on_Button_pressed"]
+[connection signal="pressed" from="Changelog/HBoxContainer/HBoxContainer/Button2" to="Changelog" method="_on_Button2_pressed"]
+[connection signal="pressed" from="PlsRatePopup/HBoxContainer/HBoxContainer/yes" to="PlsRatePopup" method="_on_yes_pressed"]
+[connection signal="pressed" from="PlsRatePopup/HBoxContainer/HBoxContainer/no" to="PlsRatePopup" method="_on_no_pressed"]
+[connection signal="pressed" from="PlsRatePopup/HBoxContainer/HBoxContainer/later" to="PlsRatePopup" method="_on_later_pressed"]

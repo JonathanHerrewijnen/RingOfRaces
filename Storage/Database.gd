@@ -1,7 +1,7 @@
 extends Node
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 
-var path = "res://Storage/World1.db"
+var path = "user://storage.db"
 var db_name = "RingOfRaces" 
 var db = null
 var verbose = true
@@ -37,7 +37,11 @@ func OpenConnection():
 	self.db.path = path
 	self.db.verbose_mode = verbose
 	var create = false
+	print(path)
+	
+	# This does not seem to work. The file is in the right place, but being recreated everytime. The file is findable in Res:// and C:/ .. But not after the user folder
 	if !file.file_exists(path):
+		print("File not existing, so creating new db")
 		create = true
 	self.db.open_db()
 	if create:
@@ -53,8 +57,9 @@ func GetInventoryItems():
 	ret = db.select_rows("player_inventory", "",["*"])
 	return ret
 	
-func SaveInventory(inventory):
-	if(inventory == null or len(inventory) != 40):
+func SaveInventory(player_inventory_items):
+	print("Now on inventory save file")
+	if(player_inventory_items == null or len(player_inventory_items) != 40):
 		Global.Log("Bad inventory save!", 3)
 		return
 	OpenConnectionIfClosed()

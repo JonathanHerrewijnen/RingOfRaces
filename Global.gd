@@ -14,6 +14,7 @@ func AddInventoryItem(itemid, amount):
 		if(player_inventory_items[x].item_id == itemid):
 			print(str(player_inventory_items[x]))
 			player_inventory_items[x].amount += amount
+			Database.SaveInventory(player_inventory_items)
 			return
 	#if we reached here then no exisiting item is found and we iterate the array again
 	print("adding item")
@@ -24,6 +25,8 @@ func AddInventoryItem(itemid, amount):
 			player_inventory_items[x].shortdesc = "desc"
 			player_inventory_items[x].item_id = itemid
 			player_inventory_items[x].amount = amount
+			Database.SaveInventory(player_inventory_items)
+			return
 
 func GoToScene(scene):
 	if current_scene != null:
