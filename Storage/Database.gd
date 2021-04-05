@@ -1,5 +1,4 @@
 extends Node
-const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 
 var path = "user://storage.db"
 var db_name = "RingOfRaces" 
@@ -12,6 +11,7 @@ func _ready():
 
 func CreateWorldDatabase():
 	print("Creating new database")
+	var SQLite = load("user://gdsqlite.gdns")
 	var player_inventory : Dictionary = Dictionary()
 	player_inventory["id"] = {"data_type":"int", "primary_key": true, "not_null": true} #slot id
 	player_inventory["item_id"] = {"data_type":"int", "not_null": true} #item id
@@ -32,6 +32,7 @@ func CreateWorldDatabase():
 		items.clear()
 
 func OpenConnection():
+	var SQLite = load("user://gdsqlite.gdns")
 	self.db = SQLite.new()
 	var file = File.new()
 	self.db.path = path
