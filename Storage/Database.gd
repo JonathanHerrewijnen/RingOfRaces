@@ -1,13 +1,16 @@
 extends Node
+const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 
 var path = "user://storage.db"
-var db_name = "RingOfRaces" 
+var db_name = "RingOfRaces"
 var db = null
 var verbose = true
 
+var host = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	host = OS.get_name()
 
 func CreateWorldDatabase():
 	print("Creating new database")
@@ -32,7 +35,8 @@ func CreateWorldDatabase():
 		items.clear()
 
 func OpenConnection():
-	var SQLite = load("user://gdsqlite.gdns")
+	if(str(OS.get_name()) == "X11"):
+		path = "res://storage.db"
 	self.db = SQLite.new()
 	var file = File.new()
 	self.db.path = path

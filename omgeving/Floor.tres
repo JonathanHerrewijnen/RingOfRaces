@@ -2,8 +2,6 @@
 
 [ext_resource path="res://pictures/tileset_images/TilesetGodotVloer.png" type="Texture" id=1]
 
-
-
 [sub_resource type="ConcavePolygonShape2D" id=1]
 segments = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 
