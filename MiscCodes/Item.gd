@@ -10,9 +10,9 @@ func _ready():
 		
 		# Id 0-40 - Map foraging - 'Random' spawning
 		1:
-			$TextureRect.texture = load("res://pictures/inventory_iconpictures/miscellaneous/magic_formulae.png")
+			$TextureRect.texture = load("res://pictures/inventory_iconpictures/food_items/surroundings/berries.png")
 		2:
-			$TextureRect.texture = load("res://pictures/inventory_iconpictures/tools_and_weapons/tools/ploeg.png")
+			$TextureRect.texture = load("res://pictures/inventory_iconpictures/plants/wood_log.png.png")
 		3:
 			$TextureRect.texture = load("res://pictures/inventory_iconpictures/food_items/herbs/saffron.png")
 			

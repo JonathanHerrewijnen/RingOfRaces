@@ -11,6 +11,7 @@ onready var interaction = get_node("/root/Map1/player_interaction")
 
 var velocity = Vector2()
 var world_position
+var ItemClass = preload("res://MiscScenes/Item.tscn")
 
 #Moving buttons
 func _physics_process(delta):
@@ -41,11 +42,11 @@ func InteractWithCell():
 	var background_cell = background_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y))
 	var interaction_cell = interaction.get_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y))
 	if plant_cell_mouse > 0 and plant_cell_mouse % 2 == 0:
-		Global.AddInventoryItem(3, 1)
+		Global.AddInventoryItem(plant_cell_mouse/2, 1)
 		plants_map.set_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y), (plant_cell_mouse-1)) 
 		AnimationOnInteraction(1)
 	elif plant_cell_character > 0 and plant_cell_character % 2 == 0:
-		Global.AddInventoryItem(3, 1)
+		Global.AddInventoryItem(plant_cell_character/2, 1)
 		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), (plant_cell_character-1)) 
 		AnimationOnInteraction(1)
 	
@@ -60,11 +61,17 @@ func _input(event):
 func AnimationOnInteraction(Item):
 	print("Item = ", Item, " Animation")
 	var itemimage = TextureRect.new()	
-	itemimage.texture = load("res://pictures/inventory_iconpictures/food_items/herbs/saffron.png")
-	itemimage.set_position(Vector2(randf()*20-40, randf()*40-20))
-	add_child(itemimage)
-	yield(get_tree().create_timer(1.0), "timeout")
-	remove_child(itemimage)
+	var item = null
+#	item = ItemClass.instance()
+#	item.set("id", self.id)
+#	add_child(item)
+#	itemimage.texture = load(Global.player_inventory_items[Item].item_id)
+	
+#	itemimage.texture = load("res://pictures/inventory_iconpictures/food_items/herbs/saffron.png")
+#	itemimage.set_position(Vector2(randf()*20-40, randf()*40-20))
+#	add_child(itemimage)
+#	yield(get_tree().create_timer(1.0), "timeout")
+#	remove_child(itemimage)
 			
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems()
