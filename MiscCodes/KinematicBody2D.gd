@@ -45,6 +45,7 @@ func InteractWithCell():
 		Global.AddInventoryItem(plant_cell_mouse/2, 1)
 		plants_map.set_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y), (plant_cell_mouse-1)) 
 		AnimationOnInteraction(1)
+		Global.Save()
 	elif plant_cell_character > 0 and plant_cell_character % 2 == 0:
 		Global.AddInventoryItem(plant_cell_character/2, 1)
 		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), (plant_cell_character-1)) 
@@ -72,7 +73,7 @@ func AnimationOnInteraction(Item):
 #	add_child(itemimage)
 #	yield(get_tree().create_timer(1.0), "timeout")
 #	remove_child(itemimage)
-			
+
 func _ready():
-	Global.player_inventory_items = Database.GetInventoryItems()
+	Global.player_inventory_items = Database.GetInventoryItems().duplicate()
 	

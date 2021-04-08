@@ -1,7 +1,7 @@
 extends Node
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 
-var path = "user://storage.db"
+var path = "res://storage.db"
 var db_name = "RingOfRaces"
 var db = null
 var verbose = true
@@ -12,16 +12,30 @@ var host = null
 func _ready():
 	host = OS.get_name()
 
+class Inventory_structure:
+	var id = 0
+	var item_id = 0
+	var item_name = "item_name"
+	var amount = 0
+	var shortdesc = "shortdesc"
+	
+	func _init(id, item_id, item_name, amount, shortdesc):
+		self.id = id
+		self.item_id = item_id
+		self.item_name = item_name
+		self.amount = amount
+		self.shortdesc = shortdesc
+
 func CreateWorldDatabase():
 	print("Creating new database")
-	var SQLite = load("user://gdsqlite.gdns")
+	#Inventory
 	var player_inventory : Dictionary = Dictionary()
 	player_inventory["id"] = {"data_type":"int", "primary_key": true, "not_null": true} #slot id
 	player_inventory["item_id"] = {"data_type":"int", "not_null": true} #item id
 	player_inventory["item_name"] = {"data_type":"text", "not_null": true} #item name
 	player_inventory["amount"] = {"data_type":"int", "not_null": true} #amount
 	player_inventory["shortdesc"] = {"data_type":"char(80)", "not_null": true} #short description
-	db.create_table("player_inventory", player_inventory)
+	self.db.create_table("player_inventory", player_inventory)
 	var items : Dictionary = Dictionary()
 	for i in range(40):
 		items["id"] = i
@@ -31,12 +45,14 @@ func CreateWorldDatabase():
 		items["shortdesc"] = "No item here"
 
 		# Insert a new row in the table
-		db.insert_row("player_inventory", items)
+		self.db.insert_row("player_inventory", items)
 		items.clear()
 
+	#Other world data
+
 func OpenConnection():
-	if(str(OS.get_name()) == "X11"):
-		path = "res://storage.db"
+	if(str(OS.get_name()) == "Android"):
+		path = "user://storage.db"
 	self.db = SQLite.new()
 	var file = File.new()
 	self.db.path = path
@@ -55,19 +71,36 @@ func OpenConnection():
 func OpenConnectionIfClosed():
 	if self.db == null:
 		OpenConnection()
+
+func CloseConnection():
+	if self.db != null:
+		self.db.commit()
+		self.db.close()
+		self.db = null
 		
 func GetInventoryItems():
 	OpenConnectionIfClosed()
-	var ret = []
-	ret = db.select_rows("player_inventory", "",["*"])
-	return ret
+	return db.select_rows("player_inventory", "",["*"])
 	
 func SaveInventory(player_inventory_items):
 	print("Now on inventory save file")
 	if(player_inventory_items == null or len(player_inventory_items) != 40):
 		Global.Log("Bad inventory save!", 3)
-		return
 	OpenConnectionIfClosed()
+	var items : Dictionary = Dictionary()
+	for item in player_inventory_items:
+		if(item['item_id'] == 0):
+			continue
+		items["id"] = item["id"]
+		items["item_id"] = item["item_id"]
+		items["item_name"] = item["item_name"]
+		items["amount"] = item["amount"]
+		items["shortdesc"] = item["shortdesc"]
+		#self.db.query("select * from player_inventory")
+		self.db.update_rows("player_inventory", "id == " + str(items['id']),items)
+		#items.clear()
+	Global.Log("Inventory save succeeded", 1)
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
