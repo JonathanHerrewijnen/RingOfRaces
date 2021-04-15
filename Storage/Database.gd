@@ -1,7 +1,7 @@
 extends Node
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 
-var path = "res://storage.db"
+var path = "res://Savegames/"
 var db_name = "RingOfRaces"
 var db = null
 var verbose = true
@@ -52,7 +52,8 @@ func CreateWorldDatabase():
 
 func OpenConnection():
 	if(str(OS.get_name()) == "Android"):
-		path = "user://storage.db"
+		path = "user://Savegames/"
+	path += Global.dbname
 	self.db = SQLite.new()
 	var file = File.new()
 	self.db.path = path

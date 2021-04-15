@@ -5,9 +5,11 @@ var LeftClick = 0
 var player_inventory_items = []
 var river_intersection_home_2 = preload("res://river_intersection_home2.tscn").instance()
 var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
+var loadgame_screen = null
 var current_scene = null
 var current_camera = null
 var dev_stats = true
+var dbname = "storage.db"
 
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
@@ -37,8 +39,13 @@ func GoToScene(scene):
 			inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 			current_scene = inventory_screen
 			get_tree().get_root().add_child(inventory_screen)
+		"loadgame_screen":
+			loadgame_screen = preload("res://MenuScenes/LoadGame_Menu.tscn").instance()
+			current_scene = loadgame_screen
+			get_tree().get_root().add_child(loadgame_screen)
 
-func LoadSave():
+func LoadSave(target="Storage.db"):
+	dbname = target
 	Database.OpenConnection()
 
 #Save everything
@@ -50,8 +57,8 @@ func _input(event):
 	pass
 
 func _ready():
-	get_tree().get_root().add_child(river_intersection_home_2)
-	get_tree().get_root().add_child(inventory_screen)
+#	get_tree().get_root().add_child(river_intersection_home_2)
+#	get_tree().get_root().add_child(inventory_screen)
 	pass
 
 func Log(msg, level=1):

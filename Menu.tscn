@@ -36,9 +36,23 @@ margin_left = 484.204
 margin_top = 100.226
 margin_right = 679.204
 margin_bottom = 153.226
+rect_pivot_offset = Vector2( 46.6684, 19.1049 )
 custom_fonts/font = SubResource( 2 )
 text = "Play Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Btn_LoadGame" type="Button" parent="."]
+margin_left = 484.01
+margin_top = 158.594
+margin_right = 679.01
+margin_bottom = 211.594
+rect_pivot_offset = Vector2( 46.6684, 19.1049 )
+custom_fonts/font = SubResource( 2 )
+text = "Load Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Btn_PlayGame" to="." method="_on_Btn_PlayGame_pressed"]
+[connection signal="pressed" from="Btn_LoadGame" to="." method="_on_Btn_LoadGame_pressed"]
