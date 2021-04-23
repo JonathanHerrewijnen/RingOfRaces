@@ -48,6 +48,8 @@ func CreateWorldDatabase():
 		self.db.insert_row("player_inventory", items)
 		items.clear()
 
+	#interaction_map
+	
 	#Other world data
 
 func OpenConnection():
