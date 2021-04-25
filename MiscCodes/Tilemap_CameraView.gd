@@ -1,8 +1,8 @@
 extends Camera2D
 
 
-onready var player = get_node("/root/Map1/Player")
-onready var background_map  = get_node("/root/Map1/background")
+onready var player = get_node("/root/base_scene/Player")
+onready var background_map  =  get_node("/root/base_scene/background")
 onready var screen_size = self.get_viewport_rect().size
 
 func _ready():

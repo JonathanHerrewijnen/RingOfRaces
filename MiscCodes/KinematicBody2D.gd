@@ -3,11 +3,11 @@ extends KinematicBody2D
 const GRAVITY = 0.0
 const WALK_SPEED = 200
 const interaction_circle_size = 150
-onready var background_map  = get_node("/root/Map1/background")
-onready var player = get_node("/root/Map1/Player")
+onready var background_map  = get_node("/root/base_scene/background")
+onready var player = get_node("/root/base_scene/Player")
 onready var cell_size = background_map._get_cell_size()
-onready var plants_map = get_node("/root/Map1/interaction_map")
-onready var interaction = get_node("/root/Map1/player_interaction")
+onready var plants_map = get_node("/root/base_scene/interaction_map")
+onready var interaction = get_node("/root/base_scene/player_interaction")
 
 var velocity = Vector2()
 var world_position
