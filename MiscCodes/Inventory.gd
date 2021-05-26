@@ -33,4 +33,4 @@ func _input(event):
 		holding_item.global_position = get_global_mouse_position()
 
 func _on_TouchScreenButton_pressed():
-	Global.GoToScene("river_intersection_home_2")
+	Global.GoToScene(Global.mainscene)

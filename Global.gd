@@ -11,6 +11,7 @@ var current_scene = null
 var current_camera = null
 var dev_stats = true
 var dbname = "storage.db"
+var mainscene = ""
 
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
@@ -43,18 +44,20 @@ func GoToScene(scene):
 		current_scene = loadedscenes[scene]
 		get_tree().get_root().add_child(loadedscenes[scene])
 		return
-	match scene:
-		"river_intersection_home_2":
-			current_scene = river_intersection_home_2
-			get_tree().get_root().add_child(river_intersection_home_2)
-		"inventory_screen":
-			inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
-			current_scene = inventory_screen
-			get_tree().get_root().add_child(inventory_screen)
-		"loadgame_screen":
-			loadgame_screen = preload("res://MenuScenes/LoadGame_Menu.tscn").instance()
-			current_scene = loadgame_screen
-			get_tree().get_root().add_child(loadgame_screen)
+	else:
+		print("Could not load scene " + scene)
+	# match scene:
+	# 	"river_intersection_home_2":
+	# 		current_scene = river_intersection_home_2
+	# 		get_tree().get_root().add_child(river_intersection_home_2)
+	# 	"inventory_screen":
+	# 		inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
+	# 		current_scene = inventory_screen
+	# 		get_tree().get_root().add_child(inventory_screen)
+	# 	"loadgame_screen":
+	# 		loadgame_screen = preload("res://MenuScenes/LoadGame_Menu.tscn").instance()
+	# 		current_scene = loadgame_screen
+	# 		get_tree().get_root().add_child(loadgame_screen)
 
 func LoadSave(target="Storage.db"):
 	dbname = target

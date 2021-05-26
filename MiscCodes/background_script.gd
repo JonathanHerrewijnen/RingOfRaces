@@ -18,4 +18,5 @@ func _unhandled_input(event):
 			set_cellv(pl_pos_tile, -1)
 
 func _on_Inventory_pressed():
-	Global.GoToScene("inventory_screen")
+	var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
+	Global.AddScene(inventory_screen, "inventory_screen", true)
