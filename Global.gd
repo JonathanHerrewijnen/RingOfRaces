@@ -3,6 +3,7 @@ extends Node2D
 var ShowInventory = 0
 var LeftClick = 0
 var player_inventory_items = []
+var loadedscenes = {}
 var river_intersection_home_2 = preload("res://river_intersection_home2.tscn").instance()
 var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 var loadgame_screen = null
@@ -28,9 +29,20 @@ func AddInventoryItem(itemid, amount):
 			player_inventory_items[x].amount = amount
 			return
 
+func AddScene(scene, savename, loadscene=true):
+	loadedscenes[savename] = scene
+	if(loadscene):
+		GoToScene(savename)
+	pass
+
+#Go to schene by name
 func GoToScene(scene):
 	if current_scene != null:
 		get_tree().get_root().remove_child(current_scene)
+	if scene in loadedscenes:
+		current_scene = loadedscenes[scene]
+		get_tree().get_root().add_child(loadedscenes[scene])
+		return
 	match scene:
 		"river_intersection_home_2":
 			current_scene = river_intersection_home_2
