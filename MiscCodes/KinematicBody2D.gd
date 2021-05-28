@@ -55,6 +55,10 @@ func InteractWithCell():
 		Global.AddInventoryItem(plant_cell_character/2, 1)
 		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), (plant_cell_character-1)) 
 		AnimationOnInteraction(1)
+	else:
+		#space is now a test function
+		GlobalGameFunctions.RenderSpeech(self, "joe")
+		pass
 	
 func _interaction_process():
 	

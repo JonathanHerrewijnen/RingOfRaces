@@ -90,6 +90,7 @@ rotation = -3.14158
 scale = Vector2( 1.22003, 1.11562 )
 z_index = 13
 normal = ExtResource( 11 )
+action = "settings_button"
 
 [node name="Map" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
 position = Vector2( 88.136, 1376.12 )

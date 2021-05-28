@@ -19,6 +19,9 @@ func _on_Btn_PlayGame_pressed():
 	var game = load("res://base_tilemap/base_tilemap.tscn").instance()
 	game.load_scene(game_data)
 
+	#save this scene to global scenes
+	Global.AddScene(self, "menu", false)
+
 	#set this scene as main
 	Global.mainscene = "startmap1"
 	Global.AddScene(game, "startmap1", true)

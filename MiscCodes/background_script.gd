@@ -17,6 +17,9 @@ func _unhandled_input(event):
 		if(pl_tile != -1):
 			set_cellv(pl_pos_tile, -1)
 
+func _on_Settings_pressed():
+	Global.GoToScene("menu")
+
 func _on_Inventory_pressed():
 	var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 	Global.AddScene(inventory_screen, "inventory_screen", true)
