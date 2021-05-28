@@ -17,7 +17,9 @@ func _unhandled_input(event):
 		if(pl_tile != -1):
 			set_cellv(pl_pos_tile, -1)
 
-# for some obscure reason, this function only works on the background script, but not on the e.g. player script or Camera2D script. May have something to do with loading/scripts being active?
+func _on_Settings_pressed():
+	Global.GoToScene("menu")
+
 func _on_Inventory_pressed():
 	var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 	Global.AddScene(inventory_screen, "inventory_screen", true)
