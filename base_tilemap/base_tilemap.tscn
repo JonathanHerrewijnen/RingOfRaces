@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://MiscCodes/background_script.gd" type="Script" id=1]
 [ext_resource path="res://MiscCodes/Tilemap_CameraView.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://pictures/gui/buttons/LeftButtonPressed.png" type="Texture" id=14]
 [ext_resource path="res://pictures/gui/buttons/quick_item_button.png" type="Texture" id=15]
 [ext_resource path="res://base_tilemap/init.gd" type="Script" id=16]
+[ext_resource path="res://Sounds/night-chip.ogg" type="AudioStream" id=17]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0
@@ -182,6 +183,11 @@ shape = SubResource( 2 )
 action = "map_interaction"
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 17 )
+autoplay = true
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]

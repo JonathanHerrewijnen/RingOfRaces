@@ -292,6 +292,7 @@ visibility_mode = 1
 script = ExtResource( 6 )
 
 [node name="dev_statistics" type="MarginContainer" parent="Camera2D"]
+visible = false
 margin_left = -615.0
 margin_top = -300.0
 margin_right = 614.0
@@ -327,6 +328,7 @@ action = "map_interaction"
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_pressed"]
+[connection signal="pressed" from="Camera2D/Interactive/GameButtons/Inventory" to="Player" method="_on_Inventory_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]

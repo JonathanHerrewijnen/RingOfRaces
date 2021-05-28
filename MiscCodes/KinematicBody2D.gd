@@ -8,6 +8,7 @@ onready var player = get_node("/root/base_scene/Player")
 onready var cell_size = background_map._get_cell_size()
 onready var plants_map = get_node("/root/base_scene/interaction_map")
 onready var interaction = get_node("/root/base_scene/player_interaction")
+onready var sound = get_node("../AudioStreamPlayer")
 
 var velocity = Vector2()
 var world_position
@@ -85,4 +86,3 @@ func AnimationOnInteraction(Item):
 
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems().duplicate()
-	
