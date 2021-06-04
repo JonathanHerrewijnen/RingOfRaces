@@ -18,6 +18,7 @@ func _on_Btn_PlayGame_pressed():
 	game_data.init_map(150, 150, "res://omgeving/Floor.tres",map_data, "res://omgeving/Floor.tres", map_data, "res://omgeving/Floor.tres", map_data, "res://omgeving/Floor.tres", map_data)
 	var game = load("res://base_tilemap/base_tilemap.tscn").instance()
 	game.load_scene(game_data)
+	
 
 	#save this scene to global scenes
 	Global.AddScene(self, "menu", false)

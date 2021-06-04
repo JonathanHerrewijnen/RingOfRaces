@@ -91,7 +91,6 @@ rotation = -3.14158
 scale = Vector2( 1.22003, 1.11562 )
 z_index = 13
 normal = ExtResource( 11 )
-action = "settings_button"
 
 [node name="Map" type="TouchScreenButton" parent="Camera2D/Interactive/GameButtons"]
 position = Vector2( 88.136, 1376.12 )
@@ -183,12 +182,11 @@ z_index = 11
 shape = SubResource( 2 )
 action = "map_interaction"
 
-[node name="Tween" type="Tween" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
 pause_mode = 2
 stream = ExtResource( 17 )
-autoplay = true
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
