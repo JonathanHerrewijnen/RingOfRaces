@@ -20,6 +20,7 @@ func _unhandled_input(event):
 func _on_Settings_pressed():
 	Global.GoToScene("menu")
 
-func _on_Inventory_pressed():
+func _on_Inventory_released():
 	var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 	Global.AddScene(inventory_screen, "inventory_screen", true)
+

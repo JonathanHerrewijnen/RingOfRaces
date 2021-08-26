@@ -24,6 +24,7 @@ func _physics_process(delta):
 		previous_position = Vector2(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
 	if Input.is_key_pressed(KEY_SPACE) or Input.is_mouse_button_pressed(BUTTON_LEFT):
 		_interaction_process()
+		SoundOnInteraction("standard")
 	velocity.y += delta * GRAVITY
 	if Input.is_action_pressed("move_left"):
 		velocity.x = -WALK_SPEED
@@ -51,13 +52,13 @@ func InteractWithCell():
 		Global.AddInventoryItem(plant_cell_mouse/2, 1)
 		plants_map.set_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y), (plant_cell_mouse-1)) 
 		AnimationOnInteraction(1)
-		SoundOnInteraction()
+		SoundOnInteraction("standard")
 		Global.Save()
 	elif plant_cell_character > 0 and plant_cell_character % 2 == 0:
 		Global.AddInventoryItem(plant_cell_character/2, 1)
 		plants_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), (plant_cell_character-1)) 
 		AnimationOnInteraction(1)
-		SoundOnInteraction()
+		SoundOnInteraction("standard")
 	else:
 		#space is now a test function
 		GlobalGameFunctions.RenderSpeech(self, "joe")
@@ -80,9 +81,9 @@ func AnimationOnInteraction(Item):
 	var itemimage = TextureRect.new()	
 	var item = null
 
-func SoundOnInteraction():
-	var CorrectSound = preload("res://Sounds/standard.wav")
-	$AudioStreamPlayer.stream = CorrectSound
+func SoundOnInteraction(x):
+	var Sound = load('res://Sound/{x}.wav'.format(x))
+	$AudioStreamPlayer.stream = Sound
 	$AudioStreamPlayer.play()
 		
 	pass

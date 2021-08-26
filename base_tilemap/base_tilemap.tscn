@@ -187,7 +187,7 @@ pause_mode = 2
 stream = ExtResource( 17 )
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="pressed" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_pressed"]
+[connection signal="released" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_released"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]

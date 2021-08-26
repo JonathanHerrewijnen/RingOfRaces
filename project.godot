@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Ring of Races demo"
-run/main_scene="res://Menu.tscn"
+run/main_scene="res://MiscScenes/Menu.tscn"
 config/icon="res://pictures/gui/buttons/delete_ringofraces.png"
 
 [autoload]

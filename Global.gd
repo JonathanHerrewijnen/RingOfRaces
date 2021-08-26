@@ -3,8 +3,8 @@ extends Node2D
 var ShowInventory = 0
 var LeftClick = 0
 var player_inventory_items = []
-var loadedscenes = {}
-var river_intersection_home_2 = preload("res://river_intersection_home2.tscn").instance()
+var loadedscenes = {"RiverIntersectionHome":"res://Maps/river_intersection_home.tscn"}
+#var river_intersection_home_2 = preload("res://Maps/river_intersection_home.tscn").instance()
 var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
 var loadgame_screen = null
 var current_scene = null
@@ -38,26 +38,33 @@ func AddScene(scene, savename, loadscene=true):
 
 #Go to schene by name
 func GoToScene(scene):
-	if current_scene != null:
-		get_tree().get_root().remove_child(current_scene)
-	if scene in loadedscenes:
-		current_scene = loadedscenes[scene]
-		get_tree().get_root().add_child(loadedscenes[scene])
-		return
-	else:
-		print("Could not load scene " + scene)
-	# match scene:
-	# 	"river_intersection_home_2":
-	# 		current_scene = river_intersection_home_2
-	# 		get_tree().get_root().add_child(river_intersection_home_2)
-	# 	"inventory_screen":
-	# 		inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
-	# 		current_scene = inventory_screen
-	# 		get_tree().get_root().add_child(inventory_screen)
-	# 	"loadgame_screen":
-	# 		loadgame_screen = preload("res://MenuScenes/LoadGame_Menu.tscn").instance()
-	# 		current_scene = loadgame_screen
-	# 		get_tree().get_root().add_child(loadgame_screen)
+	print("Scene is ",scene)
+	get_tree().change_scene("res://Maps/river_intersection_home.tscn")
+	
+	# Voor het geval iemand dit toch nog belangrijk vindt.
+#	if current_scene != null:
+#		print("here")
+#		get_tree().change_scene("res://Maps/river_intersection_home.tscn")
+#		get_tree().get_root().remove_child(current_scene)
+#		get_tree().get_root().add_child(loadedscenes[scene])
+#	if scene in loadedscenes:
+#		current_scene = loadedscenes[scene]
+#		get_tree().get_root().add_child(loadedscenes[scene])
+#		return
+#	else:
+#		print("Could not load scene " + scene)
+#	match scene:
+#		"river_intersection_home_2":
+#			current_scene = "river_intersection_home_2"
+#			get_tree().get_root().add_child(river_intersection_home_2)
+#		"inventory_screen":
+#			inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
+#			current_scene = inventory_screen
+#			get_tree().get_root().add_child(inventory_screen)
+#		"loadgame_screen":
+#			loadgame_screen = preload("res://MenuScenes/LoadGame_Menu.tscn").instance()
+#			current_scene = loadgame_screen
+#			get_tree().get_root().add_child(loadgame_screen)
 
 func LoadSave(target="Storage.db"):
 	dbname = target
