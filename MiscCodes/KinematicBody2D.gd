@@ -82,7 +82,9 @@ func AnimationOnInteraction(Item):
 	var item = null
 
 func SoundOnInteraction(x):
-	var Sound = load('res://Sound/{x}.wav'.format(x))
+	var format_string = "res://Sounds/%s.wav"
+	var actual_string = format_string % x
+	var Sound = load(actual_string)
 	$AudioStreamPlayer.stream = Sound
 	$AudioStreamPlayer.play()
 		

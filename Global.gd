@@ -12,6 +12,7 @@ var current_camera = null
 var dev_stats = true
 var dbname = "storage.db"
 var mainscene = ""
+var base_tilemap = preload("res://base_tilemap/base_tilemap.tscn")
 
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
@@ -38,8 +39,8 @@ func AddScene(scene, savename, loadscene=true):
 
 #Go to schene by name
 func GoToScene(scene):
-	print("Scene is ",scene)
-	get_tree().change_scene("res://Maps/river_intersection_home.tscn")
+	print(scene)
+	get_tree().change_scene_to(base_tilemap)
 	
 	# Voor het geval iemand dit toch nog belangrijk vindt.
 #	if current_scene != null:

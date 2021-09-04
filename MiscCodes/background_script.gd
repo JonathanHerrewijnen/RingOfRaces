@@ -3,7 +3,7 @@ extends TileMap
 onready var player = get_node("/root/base_scene/Player")
 
 func _ready():
-	print(self.tile_set.get_tiles_ids())
+	# print(self.tile_set.get_tiles_ids())
 	pass # Replace with function body.
 
 func _get_cell_size():
