@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://MiscCodes/loading_ring.gd" type="Script" id=1]
+[ext_resource path="res://MiscCodes/Loading_Ring.gd" type="Script" id=1]
 [ext_resource path="res://MiscCodes/Menu.gd" type="Script" id=2]
 [ext_resource path="res://pictures/animations/Loading/loading_ring.png" type="Texture" id=3]
 [ext_resource path="res://pictures/gui/backgrounds/treesbackground1.png" type="Texture" id=4]
@@ -54,6 +54,5 @@ text = "Load Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="Btn_PlayGame" to="." method="_on_Btn_PlayGame_pressed"]
 [connection signal="pressed" from="Btn_LoadGame" to="." method="_on_Btn_LoadGame_pressed"]

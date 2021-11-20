@@ -1,10 +1,10 @@
 extends TileMap
 
 onready var player = get_node("/root/base_scene/Player")
+onready var camera = get_node("/root/base_scene/Camera2D")
 
 func _ready():
-	# print(self.tile_set.get_tiles_ids())
-	pass # Replace with function body.
+	pass
 
 func _get_cell_size():
 	return cell_size
@@ -19,8 +19,6 @@ func _unhandled_input(event):
 
 func _on_Settings_pressed():
 	Global.GoToScene("menu")
-
+	
 func _on_Inventory_released():
-	var inventory_screen = preload("res://MiscScenes/Inventory.tscn").instance()
-	Global.AddScene(inventory_screen, "inventory_screen", true)
-
+	Global.AddScene("res://MiscScenes/Inventory.tscn")

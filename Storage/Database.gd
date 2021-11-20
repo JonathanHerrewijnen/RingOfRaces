@@ -27,6 +27,7 @@ class Inventory_structure:
 		self.shortdesc = shortdesc
 
 func CreateWorldDatabase():
+	var dir = Directory.new()
 	print("Creating new database")
 	#Inventory
 	var player_inventory : Dictionary = Dictionary()
@@ -55,6 +56,9 @@ func CreateWorldDatabase():
 func OpenConnection():
 	if(str(OS.get_name()) == "Android"):
 		path = "user://Savegames/"
+		var dir = Directory.new()
+		dir.open("user://")
+		dir.make_dir("Savegames")
 	path += Global.dbname
 	self.db = SQLite.new()
 	var file = File.new()

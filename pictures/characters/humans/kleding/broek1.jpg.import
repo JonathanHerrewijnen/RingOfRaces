@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/broek1.jpg-e91963352ba612ed232370a277019b4c.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://pictures/characters/humans/kleding/broek1.jpg"
+dest_files=[ "res://.import/broek1.jpg-e91963352ba612ed232370a277019b4c.stex" ]
+
 [params]
 
 compress/mode=0

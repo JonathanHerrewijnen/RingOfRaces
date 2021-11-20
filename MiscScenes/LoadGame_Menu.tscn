@@ -3,7 +3,6 @@
 [ext_resource path="res://MiscCodes/LoadGame_Menu.gd" type="Script" id=1]
 [ext_resource path="res://pictures/gui/backgrounds/treesbackground1.png" type="Texture" id=5]
 
-
 [sub_resource type="Theme" id=1]
 
 [node name="Loading Games Menu" type="Node2D"]

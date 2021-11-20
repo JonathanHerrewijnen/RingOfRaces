@@ -29,12 +29,13 @@ config/icon="res://pictures/gui/buttons/delete_ringofraces.png"
 Global="*res://Global.gd"
 Database="*res://Storage/Database.gd"
 GlobalStructures="*res://Global_structures.gd"
-GlobalGameFunctions="*res://Global_Game.gd"
+GlobalGameFunctions="*res://Global_InGame.gd"
 
 [display]
 
 window/size/width=1234
 window/size/resizable=false
+window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 
 [editor_plugins]
@@ -119,6 +120,7 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 
 [tiled_importer]

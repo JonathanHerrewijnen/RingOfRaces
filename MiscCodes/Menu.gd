@@ -5,7 +5,7 @@ func _ready():
 
 func _on_Btn_PlayGame_pressed():
 	Global.LoadSave()
-	Global.GoToScene("res://base_tilemap/base_scene.tscn") #Hier kan eventueel de mapnaam van de database ingevoerd worden!
+	Global.GoToScene("res://Other/base_tilemap/base_tilemap.tscn") #Hier kan eventueel de mapnaam van de database ingevoerd worden!
 	
 	#create gamemap on the fly - Obsolete as of 23 08 2021
 #	var game_data = GlobalStructures.base_tilemap.new()

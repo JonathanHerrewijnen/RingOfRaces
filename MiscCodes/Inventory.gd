@@ -33,4 +33,4 @@ func _input(event):
 		holding_item.global_position = get_global_mouse_position()
 
 func _on_TouchScreenButton_pressed():
-	Global.GoToScene(Global.mainscene)
+	Global.RemoveScene(self)

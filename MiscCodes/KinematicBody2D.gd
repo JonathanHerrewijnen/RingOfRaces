@@ -65,16 +65,12 @@ func InteractWithCell():
 		pass
 	
 func _interaction_process():
-	
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		world_position = get_global_mouse_position()
 		InteractWithCell()
 	elif Input.is_key_pressed(KEY_SPACE):
 		world_position = get_global_mouse_position()
 		InteractWithCell()
-
-func _input(event):
-	pass
 
 func AnimationOnInteraction(Item):
 	print("Item = ", Item, " Animation")
@@ -87,8 +83,6 @@ func SoundOnInteraction(x):
 	var Sound = load(actual_string)
 	$AudioStreamPlayer.stream = Sound
 	$AudioStreamPlayer.play()
-		
-	pass
 
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems().duplicate()
