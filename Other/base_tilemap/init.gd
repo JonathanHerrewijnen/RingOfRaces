@@ -12,10 +12,6 @@ func load_scene(map_data):
 			$player_interaction.set_cell(x, y, -1)
 			
 func _ready():
-	var scene = load("res://Maps/test_scene.tscn")
+	var scene = load("res://Maps/river_intersection.tscn")
 	var map = scene.instance()
-	#for c in map.get_children():
 	self.add_child(map)
-#	for c in self.get_childeren():
-#		print(c)
-#	pass # Replace with function body.

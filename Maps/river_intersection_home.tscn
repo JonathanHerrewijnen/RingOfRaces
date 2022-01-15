@@ -19,8 +19,6 @@
 [ext_resource path="res://MiscCodes/background_script.gd" type="Script" id=17]
 [ext_resource path="res://pictures/tileset_images/interaction_map.png" type="Texture" id=18]
 
-
-
 [sub_resource type="TileSet" id=1]
 0/name = "vegetation.png 0"
 0/texture = ExtResource( 4 )
