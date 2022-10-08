@@ -21,7 +21,7 @@ func _physics_process(delta):
 		player_interaction.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y) , 0)
 		player_interaction.set_cell(previous_position.x, previous_position.y, -1)
 		previous_position = Vector2(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
-	if Input.is_key_pressed(KEY_SPACE) or Input.is_mouse_button_pressed(BUTTON_LEFT):
+	if Input.is_action_just_pressed("interact_with_cell"):
 		_interaction_process()
 	velocity.y += delta * GRAVITY
 	if Input.is_action_pressed("move_left"):
@@ -63,11 +63,8 @@ func InteractWithCell():
 		pass
 	
 func _interaction_process():
-	if Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_key_pressed(KEY_SPACE):
-		world_position = get_global_mouse_position()
-		InteractWithCell()
-	else:
-		pass
+	world_position = get_global_mouse_position()
+	InteractWithCell()
 
 func AnimationOnInteraction(Item):
 	print("Item = ", Item, " Animation")
