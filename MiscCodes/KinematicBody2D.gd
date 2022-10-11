@@ -4,8 +4,8 @@ const GRAVITY = 0.0
 const WALK_SPEED = 200
 const interaction_circle_size = 150
 onready var background_map  = get_node("/root/base_scene/background")
-onready var player = get_node("/root/base_scene/Player")
 onready var cell_size = background_map._get_cell_size()
+onready var player = get_node("/root/base_scene/Player")
 onready var interaction_map = get_node("/root/base_scene/interaction_map")
 onready var player_interaction = get_node("/root/base_scene/player_interaction")
 
@@ -48,6 +48,7 @@ func InteractWithCell():
 	
 	print("plant cell mouse line 1: ", interaction_map.get_cell(12, 36))
 	print('plant_cell_mouse=',plant_cell_mouse,' | plant_cell_character=', plant_cell_character,' | background_cell=', background_cell,' | interaction_cell=',interaction_cell)
+	GlobalGameFunctions.SoundOnInteraction(self, "standard")
 	
 	if plant_cell_mouse > 0 and plant_cell_mouse % 2 == 0:
 		Global.AddInventoryItem(plant_cell_mouse/2, 1)
@@ -70,13 +71,6 @@ func AnimationOnInteraction(Item):
 	print("Item = ", Item, " Animation")
 	var itemimage = TextureRect.new()	
 	var item = null
-
-func SoundOnInteraction(x):
-	var format_string = "res://Sounds/%s.wav"
-	var actual_string = format_string % x
-	var Sound = load(actual_string)
-	$AudioStreamPlayer.stream = Sound
-	$AudioStreamPlayer.play()
 
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems().duplicate()

@@ -2,7 +2,6 @@
 
 [ext_resource path="res://pictures/arrow_down.png" type="Texture" id=1]
 
-
 [sub_resource type="GradientTexture" id=1]
 
 [node name="Control" type="Control"]

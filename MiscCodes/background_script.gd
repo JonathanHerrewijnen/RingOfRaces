@@ -3,9 +3,6 @@ extends TileMap
 onready var player = get_node("/root/base_scene/Player")
 onready var camera = get_node("/root/base_scene/Camera2D")
 
-func _ready():
-	pass
-
 func _get_cell_size():
 	return cell_size
 
