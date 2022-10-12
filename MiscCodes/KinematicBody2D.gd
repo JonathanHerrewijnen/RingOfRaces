@@ -3,11 +3,12 @@ extends KinematicBody2D
 const GRAVITY = 0.0
 const WALK_SPEED = 200
 const interaction_circle_size = 150
-onready var background_map  = get_node("/root/base_scene/background")
+#onready var background_map  = get_node("/root/base_scene/background")
+onready var background_map  = get_parent().get_node("background")
+onready var vegetation_map  = get_parent().get_node("vegetation")
+onready var interaction_map = get_parent().get_node("interaction_map")
+onready var player_interaction_map = get_parent().get_node("player_interaction")
 onready var cell_size = background_map._get_cell_size()
-onready var player = get_node("/root/base_scene/Player")
-onready var interaction_map = get_node("/root/base_scene/interaction_map")
-onready var player_interaction = get_node("/root/base_scene/player_interaction")
 
 var velocity = Vector2()
 var world_position
@@ -18,8 +19,8 @@ var previous_position = Vector2(0,0)
 func _physics_process(delta):
 	var cur = Vector2(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
 	if(cur != previous_position):
-		player_interaction.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y) , 0)
-		player_interaction.set_cell(previous_position.x, previous_position.y, -1)
+		player_interaction_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y) , 0)
+		player_interaction_map.set_cell(previous_position.x, previous_position.y, -1)
 		previous_position = Vector2(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
 	if Input.is_action_just_pressed("interact_with_cell"):
 		_interaction_process()
@@ -40,15 +41,22 @@ func _physics_process(delta):
 	Global.current_camera.Update()
 
 func InteractWithCell():
+	print(background_map)
+	print(interaction_map)
 	var plant_cell_mouse = interaction_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[0] / cell_size.y))
 	var plant_cell_character = interaction_map.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
 	
 	var background_cell = background_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y))
-	var interaction_cell = player_interaction.get_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y))
+	var interaction_cell = player_interaction_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y))
 	
 	print("plant cell mouse line 1: ", interaction_map.get_cell(12, 36))
 	print('plant_cell_mouse=',plant_cell_mouse,' | plant_cell_character=', plant_cell_character,' | background_cell=', background_cell,' | interaction_cell=',interaction_cell)
 	GlobalGameFunctions.SoundOnInteraction(self, "standard")
+	for i in 150:
+		for j in 150:
+			if interaction_map.get_cell(int(i),int(j)) != -1:
+				print(interaction_map.get_cell(int(i),int(j)))
+				print(i, j)
 	
 	if plant_cell_mouse > 0 and plant_cell_mouse % 2 == 0:
 		Global.AddInventoryItem(plant_cell_mouse/2, 1)
@@ -60,7 +68,6 @@ func InteractWithCell():
 		interaction_map.set_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y), (plant_cell_character-1)) 
 		AnimationOnInteraction(1)
 	else:
-		#space is now a test function
 		pass
 	
 func _interaction_process():
