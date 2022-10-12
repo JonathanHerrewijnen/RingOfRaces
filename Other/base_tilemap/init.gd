@@ -5,7 +5,8 @@ func load_scene(map_data):
 	print("MAP NAME ",map_data+".tscn")
 	var map = scene.instance()
 	return map
-	
 			
 func _ready():
-	self.add_child(load_scene("res://Maps/river_intersection"))
+	var map = "res://Maps/river_intersection"
+	self.add_child(load_scene(map))
+	

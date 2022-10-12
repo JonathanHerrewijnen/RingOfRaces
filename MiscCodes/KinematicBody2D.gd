@@ -5,6 +5,7 @@ const WALK_SPEED = 200
 const interaction_circle_size = 150
 #onready var background_map  = get_node("/root/base_scene/background")
 onready var background_map  = get_parent().get_node("background")
+#onready var background_map  = get_node("background")
 onready var vegetation_map  = get_parent().get_node("vegetation")
 onready var interaction_map = get_parent().get_node("interaction_map")
 onready var player_interaction_map = get_parent().get_node("player_interaction")
@@ -41,6 +42,8 @@ func _physics_process(delta):
 	Global.current_camera.Update()
 
 func InteractWithCell():
+	for _i in self.get_children():
+		print(_i)
 	print(background_map)
 	print(interaction_map)
 	var plant_cell_mouse = interaction_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[0] / cell_size.y))
