@@ -55,11 +55,6 @@ func InteractWithCell():
 	print("plant cell mouse line 1: ", interaction_map.get_cell(12, 36))
 	print('plant_cell_mouse=',plant_cell_mouse,' | plant_cell_character=', plant_cell_character,' | background_cell=', background_cell,' | interaction_cell=',interaction_cell)
 	GlobalGameFunctions.SoundOnInteraction(self, "standard")
-	for i in 150:
-		for j in 150:
-			if interaction_map.get_cell(int(i),int(j)) != -1:
-				print(interaction_map.get_cell(int(i),int(j)))
-				print(i, j)
 	
 	if plant_cell_mouse > 0 and plant_cell_mouse % 2 == 0:
 		Global.AddInventoryItem(plant_cell_mouse/2, 1)
@@ -84,3 +79,4 @@ func AnimationOnInteraction(Item):
 
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems().duplicate()
+	print("Map = ", Global.map_name)

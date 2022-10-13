@@ -11,6 +11,14 @@ var dev_stats = true
 var dbname = "storage.db"
 var mainscene = ""
 var base_tilemap = preload("res://Other/base_tilemap/base_tilemap.tscn")
+var map_name
+
+func load_scene(map_data):
+	map_name = map_data
+	var scene = load(map_data+".tscn")
+	print("MAP NAME ",map_data+".tscn")
+	var map = scene.instance()
+	return map
 
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
