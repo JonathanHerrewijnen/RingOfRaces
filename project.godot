@@ -24,12 +24,17 @@ config/name="Ring of Races demo"
 run/main_scene="res://MiscScenes/Menu.tscn"
 config/icon="res://pictures/gui/buttons/delete_ringofraces.png"
 
+[audio]
+
+default_bus_layout=""
+
 [autoload]
 
 Global="*res://Global.gd"
 Database="*res://Storage/Database.gd"
 GlobalStructures="*res://Global_structures.gd"
 GlobalGameFunctions="*res://Global_InGame.gd"
+GameVariables="*res://MiscScenes/GameVariables.tscn"
 
 [display]
 
