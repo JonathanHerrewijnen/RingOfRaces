@@ -4,11 +4,10 @@ const GRAVITY = 0.0
 const WALK_SPEED = 200
 const interaction_circle_size = 150
 #onready var background_map  = get_node("/root/base_scene/background")
-onready var background_map  = get_parent().get_node("background")
-#onready var background_map  = get_node("background")
-onready var vegetation_map  = get_parent().get_node("vegetation")
-onready var interaction_map = get_parent().get_node("interaction_map")
-onready var player_interaction_map = get_parent().get_node("player_interaction")
+onready var background_map  = get_node("../background")
+onready var vegetation_map  = get_node("../vegetation")
+onready var interaction_map = get_node("../interaction_map")
+onready var player_interaction_map = get_node("../player_interaction")
 onready var cell_size = background_map._get_cell_size()
 
 var velocity = Vector2()
@@ -42,11 +41,18 @@ func _physics_process(delta):
 	Global.current_camera.Update()
 
 func InteractWithCell():
-	for _i in self.get_children():
-		print(_i)
-	print(background_map)
-	print(interaction_map)
-	var plant_cell_mouse = interaction_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[0] / cell_size.y))
+	for _i in self.get_parent().get_children():
+		print("Nodes visible ",_i)
+		if _i is TileMap:
+			print("Checking ", _i)
+			for x in 300:
+				for y in 300:
+					if _i.get_cell(x, y) != -1:
+						print(_i.get_cell(x, y))
+#					else:
+#						_i.set_cell(x, y, 1)
+			
+	var plant_cell_mouse = interaction_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y))
 	var plant_cell_character = interaction_map.get_cell(int(self.position.x / cell_size.x), int(self.position.y / cell_size.y))
 	
 	var background_cell = background_map.get_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y))
@@ -54,12 +60,12 @@ func InteractWithCell():
 	
 	print("plant cell mouse line 1: ", interaction_map.get_cell(12, 36))
 	print('plant_cell_mouse=',plant_cell_mouse,' | plant_cell_character=', plant_cell_character,' | background_cell=', background_cell,' | interaction_cell=',interaction_cell)
-	GlobalGameFunctions.SoundOnInteraction(self, "standard")
 	
 	if plant_cell_mouse > 0 and plant_cell_mouse % 2 == 0:
 		Global.AddInventoryItem(plant_cell_mouse/2, 1)
 		interaction_map.set_cell(int(world_position[0] / cell_size.x), int(world_position[1] / cell_size.y), (plant_cell_mouse-1)) 
 		AnimationOnInteraction(1)
+		GlobalGameFunctions.SoundOnInteraction(self, "standard")
 		Global.Save()
 	elif plant_cell_character > 0 and plant_cell_character % 2 == 0:
 		Global.AddInventoryItem(plant_cell_character/2, 1)

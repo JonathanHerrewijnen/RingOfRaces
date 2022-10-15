@@ -17,8 +17,7 @@ func load_scene(map_data):
 	map_name = map_data
 	var scene = load(map_data+".tscn")
 	print("MAP NAME ",map_data+".tscn")
-	var map = scene.instance()
-	return map
+	return scene.instance()
 
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
