@@ -1,4 +1,4 @@
 extends Sprite
 
 func _physics_process(delta):
-	rotate(0.2)
+	rotate(0.6)
