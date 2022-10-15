@@ -54,5 +54,6 @@ text = "Load Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="Btn_PlayGame" to="." method="_on_Btn_PlayGame_pressed"]
 [connection signal="pressed" from="Btn_LoadGame" to="." method="_on_Btn_LoadGame_pressed"]
