@@ -86,3 +86,4 @@ func AnimationOnInteraction(Item):
 func _ready():
 	Global.player_inventory_items = Database.GetInventoryItems().duplicate()
 	print("Map = ", Global.map_name)
+	

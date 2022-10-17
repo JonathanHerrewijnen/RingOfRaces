@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://pictures/gui/player_interaction.tres" type="TileSet" id=1]
-[ext_resource path="res://MiscCodes/background_script.gd" type="Script" id=2]
 [ext_resource path="res://MiscCodes/Tilemap_CameraView.gd" type="Script" id=3]
 [ext_resource path="res://MiscCodes/TouchScreenButton.gd" type="Script" id=4]
 [ext_resource path="res://MiscCodes/KinematicBody2D.gd" type="Script" id=5]
@@ -24,29 +23,6 @@ radius = 20.0
 
 [node name="base_scene" type="Node2D"]
 script = ExtResource( 6 )
-
-[node name="background" type="TileMap" parent="."]
-cell_size = Vector2( 32, 32 )
-cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
-format = 1
-script = ExtResource( 2 )
-
-[node name="vegetation" type="TileMap" parent="."]
-cell_size = Vector2( 32, 32 )
-format = 1
-
-[node name="interaction_map" type="TileMap" parent="."]
-cell_size = Vector2( 32, 32 )
-cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
-centered_textures = true
-format = 1
-
-[node name="player_interaction" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 32, 32 )
-cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
-format = 1
-tile_data = PoolIntArray( 9371749, 0, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 705.297, 1197.88 )
@@ -192,7 +168,6 @@ shape = SubResource( 2 )
 action = "map_interaction"
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="released" from="Camera2D/Interactive/GameButtons/Inventory" to="background" method="_on_Inventory_released"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveDown" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]

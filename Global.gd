@@ -49,6 +49,13 @@ func RemoveScene(scene):
 	print("Removing scene ", scene)
 	var camera = get_node("/root/base_scene/Camera2D")
 	camera.remove_child(scene)
+	
+func AddMap(mapname):
+	var maps = load(mapname).instance().get_children()
+	for i in maps:
+		print(get_tree().get_root())
+		get_tree().get_root().add_child(i)
+		print('Added ', i)
 
 #Go to scene by name
 func GoToScene(scene):

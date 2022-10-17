@@ -6,6 +6,7 @@ onready var background_map  =  get_node("/root/base_scene/background")
 onready var screen_size = self.get_viewport_rect().size
 
 func _ready():
+	var map_name = "res://Maps/river_intersection"
 	calculate_bounds()
 	Global.current_camera = self
 	$dev_statistics.visible = Global.dev_stats
@@ -21,6 +22,8 @@ var max_y_pixel = 0
 
 #function that calculates the borders/bounds of the map
 func calculate_bounds():
+	for _i in self.get_parent().get_children():
+		print("Nodes visible ", _i)
 	var used_cells = background_map.get_used_cells()
 	for pos in used_cells:
 		if pos.x < min_x:
