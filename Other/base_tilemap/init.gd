@@ -1,8 +1,18 @@
 extends Node2D
-			
-func _init():
-	var map_name = "res://Maps/river_intersection.tscn"
-	Global.AddMap(map_name)
+
+#func realize():
+#	print("At ready")
+#	for _i in self.get_children():
+#		print("Nodes visible at init  ", _i)
+#
+#func _init():
+#	var map_name = "res://Maps/river_intersection.tscn"
+#	Global.AddMap(self, map_name)
+#	realize()
+#
+#func _ready():
+#	realize()
+
 #	for _i in self.get_children():
 #		print("Nodes visible ",_i)
 #		if _i is TileMap:

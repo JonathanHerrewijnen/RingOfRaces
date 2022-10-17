@@ -5,6 +5,11 @@ onready var player = get_node("/root/base_scene/Player")
 onready var background_map  =  get_node("/root/base_scene/background")
 onready var screen_size = self.get_viewport_rect().size
 
+func _init():
+	var map_name = "res://Maps/river_intersection.tscn"
+	print(self)
+	Global.AddMap(self, map_name)
+
 func _ready():
 	var map_name = "res://Maps/river_intersection"
 	calculate_bounds()
@@ -22,7 +27,7 @@ var max_y_pixel = 0
 
 #function that calculates the borders/bounds of the map
 func calculate_bounds():
-	for _i in self.get_parent().get_children():
+	for _i in self.get_children():
 		print("Nodes visible ", _i)
 	var used_cells = background_map.get_used_cells()
 	for pos in used_cells:
