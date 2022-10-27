@@ -8,7 +8,8 @@ onready var background_map  = get_node("../background")
 onready var vegetation_map  = get_node("../vegetation")
 onready var interaction_map = get_node("../interaction_map")
 onready var player_interaction_map = get_node("../player_interaction")
-onready var cell_size = background_map._get_cell_size()
+#onready var cell_size = background_map._get_cell_size()
+onready var cell_size = 32
 
 var velocity = Vector2()
 var world_position

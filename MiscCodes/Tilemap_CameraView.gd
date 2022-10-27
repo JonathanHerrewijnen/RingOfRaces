@@ -5,13 +5,11 @@ onready var player = get_node("/root/base_scene/Player")
 onready var background_map  =  get_node("/root/base_scene/background")
 onready var screen_size = self.get_viewport_rect().size
 
-func _init():
+func _ready():
 	var map_name = "res://Maps/river_intersection.tscn"
 	print(self)
 	Global.AddMap(self, map_name)
-
-func _ready():
-	var map_name = "res://Maps/river_intersection"
+	
 	calculate_bounds()
 	Global.current_camera = self
 	$dev_statistics.visible = Global.dev_stats

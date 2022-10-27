@@ -145,6 +145,7 @@ resource_local_to_scene = true
 6/z_index = 0
 
 [node name="Map1" type="Node2D"]
+z_index = -1
 
 [node name="background" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )

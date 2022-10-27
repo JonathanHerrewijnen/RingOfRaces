@@ -51,12 +51,22 @@ func RemoveScene(scene):
 	camera.remove_child(scene)
 	
 func AddMap(load_on, mapname):
-	var maps = load(mapname).instance().get_children()
-	for i in maps:
-		load_on.add_child(i)
-		print('Added ', i)
-		for _i in self.get_children():
-			print("Nodes visible at addMap ", _i)
+	for _i in get_parent().get_children():
+		print("Nodes visible before addMap ", _i)
+	print("Adding map ", mapname)
+	var addedscene = load(mapname).instance()
+	#addedscene.set_position(Vector2(-617,-300))
+	get_parent().add_child(addedscene)
+	for _i in get_parent().get_children():
+		print("Nodes visible at addMap ", _i)
+#	var maps = load(mapname).instance().get_children()
+#	for i in maps:
+#		load_on.add_child(i)
+#		print('Added ', i)
+#
+#		#There's a chance that 1) this is an on-load problem 2) the nodes never get instanced/loaded
+#		for _i in self.get_children():
+#			print("Nodes visible at addMap ", _i)
 
 #Go to scene by name
 func GoToScene(scene):
