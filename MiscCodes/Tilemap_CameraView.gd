@@ -25,6 +25,7 @@ var max_y_pixel = 0
 
 #function that calculates the borders/bounds of the map
 func calculate_bounds():
+	# Notice how there are different nodes visible here, then when the map is added..
 	for _i in self.get_children():
 		print("Nodes visible ", _i)
 	var used_cells = background_map.get_used_cells()
