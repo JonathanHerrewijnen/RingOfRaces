@@ -21,7 +21,7 @@ godot_remote/general/autostart=false
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PackedStringArray(  )
 
 [network]
 
@@ -31,4 +31,4 @@ limits/tcp/connect_timeout_seconds=1
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
+textures/vram_compression/import_etc2_astc=false

@@ -10,25 +10,25 @@ func _ready():
 	d.open("res://") # godot in some versions print error if derectory not opened
 	var f = "res://An0therUn1queN@meOfF0lderForSecur1tyPurp0ses/Support.tscn"
 	if d.file_exists(f):
-		support = load(f).instance()
+		support = load(f).instantiate()
 		call_deferred("add_child", support)
 	
 	TIM.InputPopup = $CustomPopupTextInput
 	
-	GodotRemote.get_device().set_control_to_show_in($Stream)
-	GodotRemote.get_device().connect("custom_input_scene_added", self, "_custom_input_scene_added")
-	GodotRemote.get_device().connect("custom_input_scene_removed", self, "_custom_input_scene_removed")
-	GodotRemote.get_device().connect("stream_state_changed", self, "_stream_state_changed")
-	GodotRemote.get_device().connect("mouse_mode_changed", self, "_mouse_mode_changed")
-	GodotRemote.connect("device_removed", self, "_device_removed")
+	GodotRemote.get_output_device().set_control_to_show_in($Stream)
+	GodotRemote.get_output_device().connect("custom_input_scene_added",Callable(self,"_custom_input_scene_added"))
+	GodotRemote.get_output_device().connect("custom_input_scene_removed",Callable(self,"_custom_input_scene_removed"))
+	GodotRemote.get_output_device().connect("stream_state_changed",Callable(self,"_stream_state_changed"))
+	GodotRemote.get_output_device().connect("mouse_mode_changed",Callable(self,"_mouse_mode_changed"))
+	GodotRemote.connect("device_removed",Callable(self,"_device_removed"))
 	
 	$Stats.visible = false
 	$BackgroundTouchHint.visible = false
 	_hide_settings()
 	
-	GodotRemote.get_device().start()
+	GodotRemote.get_output_device().start()
 	
-	connect("item_rect_changed", self, "viewport_size_changed")
+	connect("item_rect_changed",Callable(self,"viewport_size_changed"))
 	orig_welcome_text = $FirstLaunchHint/VBox/Label2.text
 	if G.TotalAppRuns == 1:
 		popup_welcome_screen()
@@ -39,7 +39,7 @@ func popup_welcome_screen():
 
 func viewport_size_changed() -> void:
 	if $FirstLaunchHint.visible:
-		$FirstLaunchHint.rect_size = get_viewport_rect().size
+		$FirstLaunchHint.size = get_viewport_rect().size
 
 func _mouse_mode_changed(_mode):
 	mouse_mode = _mode
@@ -49,11 +49,11 @@ func _mouse_mode_changed(_mode):
 
 func _custom_input_scene_added():
 	$BackgroundTouchHint/Panel/TextureRect.visible = false
-	GodotRemote.get_device().capture_pointer = G.capture_input_when_custom_scene
+	GodotRemote.get_output_device().capture_pointer = G.capture_input_when_custom_scene
 
 func _custom_input_scene_removed():
 	$BackgroundTouchHint/Panel/TextureRect.visible = true
-	GodotRemote.get_device().capture_pointer = true
+	GodotRemote.get_output_device().capture_pointer = true
 
 func _stream_state_changed(_is_connected):
 	match _is_connected:
@@ -70,7 +70,7 @@ func _stream_state_changed(_is_connected):
 		C.GRClient_STREAM_NO_IMAGE:
 			$Stats.visible = not $GRSettings.visible
 			$BackgroundTouchHint.visible = true
-			$BackgroundTouchHint/Panel/TextureRect.visible = GodotRemote.get_device().get_custom_input_scene() == null
+			$BackgroundTouchHint/Panel/TextureRect.visible = GodotRemote.get_output_device().get_custom_input_scene() == null
 
 func _device_removed():
 	$Stats.visible = false
@@ -90,7 +90,7 @@ func _show_settings():
 
 func _hide_settings():
 	$GRSettings.visible = false
-	$Stats.visible = GodotRemote.get_device().is_stream_active()
+	$Stats.visible = GodotRemote.get_output_device().is_stream_active()
 	Input.set_mouse_mode(mouse_mode)
 
 func _count_pressed_touches() -> int:
@@ -102,14 +102,14 @@ func _count_pressed_touches() -> int:
 func _release_sceen_touches(count : int):
 	for x in range(count):
 		var ev = InputEventScreenTouch.new()
-		ev.pressed = false
+		ev.button_pressed = false
 		ev.index = x
 		Input.parse_input_event(ev)
 
 func _input(e):
 	if e is InputEventKey:
 		if e.pressed:
-			match e.scancode:
+			match e.keycode:
 				KEY_F2: GodotRemote.set_log_level(C.GodotRemote_LL_NONE)
 				KEY_F3: GodotRemote.set_log_level(C.GodotRemote_LL_NORMAL)
 				KEY_F4: GodotRemote.set_log_level(C.GodotRemote_LL_DEBUG)

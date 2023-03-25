@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var speed = 500.0
 
@@ -12,4 +12,6 @@ func _physics_process(delta):
 		direction.x += 1
 	
 	var velocity = (direction * speed + Vector2.DOWN * 98)
-	move_and_slide(velocity, Vector2.UP)
+	set_velocity(velocity)
+	set_up_direction(Vector2.UP)
+	move_and_slide()

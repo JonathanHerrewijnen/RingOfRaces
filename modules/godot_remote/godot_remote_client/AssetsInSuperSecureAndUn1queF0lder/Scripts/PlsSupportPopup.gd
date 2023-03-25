@@ -1,4 +1,4 @@
-extends WindowDialog
+extends Window
 
 var has_billings = false
 var shown = false
@@ -6,7 +6,7 @@ var shown = false
 func _enter_tree():
 	if G.Billings:
 		has_billings = true
-		G.Billings.connect("billings_ready", self, "_billings_ready")
+		G.Billings.connect("billings_ready",Callable(self,"_billings_ready"))
 
 func _is_ready_to_show() -> bool:
 	return (G.AppRuns != 0 and G.AppRuns % 5 == 0) and !G.VersionChanged

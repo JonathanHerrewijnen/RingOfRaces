@@ -9,7 +9,7 @@ class Tile:
 	var stride := 0
 	var id := 0
 	
-	func _init(file ="", size = 0, x = 0, y = 0, stride = 0):
+	func _init(file ="",size = 0,x = 0,y = 0,stride = 0):
 		self.file = file
 		self.size = size
 		self.x = x

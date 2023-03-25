@@ -8,7 +8,7 @@ func _ready():
 	GodotRemote.create_remote_device(GodotRemote.DEVICE_CLIENT)
 	
 	# get device and convert it to client class
-	var d : GRClient = GodotRemote.get_device()
+	var d : GRClient = GodotRemote.get_output_device()
 	# set control where you want to see stream. it can be whole screen control or custom 'viewport'
 	d.set_control_to_show_in(self)
 	# set address of server. optional if you want to connect to other projects on one pc or if you use connection over adb 

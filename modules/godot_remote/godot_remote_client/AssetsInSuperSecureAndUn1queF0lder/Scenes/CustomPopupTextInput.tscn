@@ -20,44 +20,44 @@ __meta__ = {
 [node name="Box" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Top" type="Control" parent="Box"]
-margin_right = 736.0
-margin_bottom = 316.0
+offset_right = 736.0
+offset_bottom = 316.0
 focus_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Box"]
-margin_top = 320.0
-margin_right = 736.0
-margin_bottom = 366.0
+offset_top = 320.0
+offset_right = 736.0
+offset_bottom = 366.0
 text = "TITLE"
 
 [node name="LineEdit" type="LineEdit" parent="Box" groups=[
 "IgnoreTouchInput",
 ]]
-margin_top = 370.0
-margin_right = 736.0
-margin_bottom = 416.0
+offset_top = 370.0
+offset_right = 736.0
+offset_bottom = 416.0
 custom_styles/normal = ExtResource( 3 )
 text = "Text"
 max_length = 128
 caret_blink = true
 
 [node name="Bottom" type="Control" parent="Box"]
-margin_top = 420.0
-margin_right = 736.0
-margin_bottom = 736.0
+offset_top = 420.0
+offset_right = 736.0
+offset_bottom = 736.0
 focus_mode = 2
 size_flags_vertical = 3
 [connection signal="focus_exited" from="Box/LineEdit" to="." method="_on_LineEdit_focus_exited"]
 [connection signal="text_changed" from="Box/LineEdit" to="." method="_on_LineEdit_text_changed"]
-[connection signal="text_entered" from="Box/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="text_submitted" from="Box/LineEdit" to="." method="_on_LineEdit_text_entered"]

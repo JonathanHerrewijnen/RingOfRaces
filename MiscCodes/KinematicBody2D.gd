@@ -1,17 +1,17 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const GRAVITY = 0.0
 const WALK_SPEED = 200
 const interaction_circle_size = 150
 #onready var background_map  = get_node("/root/base_scene/background")
-onready var background_map  = get_node("../background")
-onready var vegetation_map  = get_node("../vegetation")
-onready var interaction_map = get_node("../interaction_map")
-onready var player_interaction_map = get_node("../player_interaction")
+@onready var background_map  = get_node("../background")
+@onready var vegetation_map  = get_node("../vegetation")
+@onready var interaction_map = get_node("../interaction_map")
+@onready var player_interaction_map = get_node("../player_interaction")
 #onready var cell_size = background_map._get_cell_size()
-onready var cell_size = 32
+@onready var cell_size = 32
 
-var velocity = Vector2()
+# var velocity = Vector2()
 var world_position
 var ItemClass = preload("res://MiscScenes/Item.tscn")
 var previous_position = Vector2(0,0)
@@ -37,7 +37,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = 0
 		velocity.y = 0
-	move_and_slide(velocity, Vector2(0, -1))
+	set_velocity(velocity)
+	set_up_direction(Vector2(0, -1))
+	move_and_slide()
 	
 	Global.current_camera.Update()
 

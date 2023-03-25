@@ -24,7 +24,7 @@ func _ready():
 	#empty_style.texture = empty_tex
 #	print(self.get)
 	if Global.player_inventory_items[self.id] != null:
-		item = ItemClass.instance()
+		item = ItemClass.instantiate()
 		item.set("id", self.id)
 		add_child(item)
 

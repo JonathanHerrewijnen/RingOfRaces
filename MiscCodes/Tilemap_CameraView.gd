@@ -1,9 +1,9 @@
 extends Camera2D
 
 
-onready var player = get_node("/root/base_scene/Player")
-onready var background_map  =  get_node("/root/base_scene/background")
-onready var screen_size = self.get_viewport_rect().size
+@onready var player = get_node("/root/base_scene/Player")
+@onready var background_map  =  get_node("/root/base_scene/background")
+@onready var screen_size = self.get_viewport_rect().size
 
 func _ready():
 	var map_name = "res://Maps/river_intersection.tscn"

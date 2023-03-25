@@ -3,16 +3,16 @@ extends VBoxContainer
 # Many thanks to Arkeve! https://github.com/arkeve
 
 const SlotClass = preload("res://MiscCodes/Slot.gd")
-onready var inventory_slots = $GridContainer
+@onready var inventory_slots = $GridContainer
 var holding_item = null
 
 func _ready():
 	for inv_slot in inventory_slots.get_children():
-		inv_slot.connect("gui_input", self, "slot_gui_input", [inv_slot])
+		inv_slot.connect("gui_input",Callable(self,"slot_gui_input").bind(inv_slot))
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT && event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
 			if holding_item != null:
 				if !slot.item: # Place holding item to slot
 					slot.putIntoSlot(holding_item)

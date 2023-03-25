@@ -1,4 +1,4 @@
-extends WindowDialog
+extends Window
 
 func _is_ready_to_show() -> bool:
 	return (G.Billings and ((G.AppRuns == 7 or (G.AppRuns > 9 and G.AppRuns % 9 == 0)) and G.UserRateState == G.RateState.NotNow)) and !G.VersionChanged

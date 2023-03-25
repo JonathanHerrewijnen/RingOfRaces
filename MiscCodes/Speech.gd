@@ -8,9 +8,9 @@ var bubble_text_length = 0
 var bubble_text_index = 0
 var current_text = ""
 
-onready var lbltext = get_node("VBoxContainer/Label")
-onready var ninerect = get_node("VBoxContainer/Label/NinePatchRect")
-onready var timer = get_node("Timer")
+@onready var lbltext = get_node("VBoxContainer/Label")
+@onready var ninerect = get_node("VBoxContainer/Label/NinePatchRect")
+@onready var timer = get_node("Timer")
 
 var do_close = false
 
@@ -36,8 +36,8 @@ func _on_Timer_timeout():
 			lbltext.text = current_text
 			bubble_text_length -= 1
 			if(can_shrink):
-				ninerect.rect_size -= Vector2(6,0)
-				ninerect.rect_position += Vector2(3,0)
+				ninerect.size -= Vector2(6,0)
+				ninerect.position += Vector2(3,0)
 			
 			timer.start(0.04)
 		else:

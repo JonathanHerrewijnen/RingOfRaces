@@ -1,16 +1,16 @@
-tool
+@tool
 class_name CustomPopupTextInput
 extends Control
 
-onready var label := $Box/Label
-onready var line := $Box/LineEdit
+@onready var label := $Box/Label
+@onready var line := $Box/LineEdit
 
-var Title := "" setget _set_title
-var IsSecret := false setget _set_is_secret
-var Text := "" setget _set_text
-var Placeholder := "" setget _set_placeholder
-var MaxLength := 128 setget _set_max_length
-var LineFont : Font setget _set_line_font
+var Title := "" : set = _set_title
+var IsSecret := false : set = _set_is_secret
+var Text := "" : set = _set_text
+var Placeholder := "" : set = _set_placeholder
+var MaxLength := 128 : set = _set_max_length
+var LineFont : Font : set = _set_line_font
 
 var LineEditToReturn : LineEdit
 
@@ -34,7 +34,7 @@ func _process(_delta):
 		var h := OS.get_virtual_keyboard_height()
 		if h > 0 and not force_close:
 			var vp_s := get_tree().root.get_visible_rect().size
-			rect_size = vp_s - Vector2(0, h) * (vp_s / OS.window_size)
+			size = vp_s - Vector2(0, h) * (vp_s / get_window().size)
 			
 			if not is_shown:
 				is_shown = true
@@ -48,7 +48,7 @@ func _process(_delta):
 					LineEditToReturn.text = line.text
 					LineEditToReturn.emit_signal("text_changed", line.text)
 					if LineEditToReturn.get_parent() is SpinBox:
-						LineEditToReturn.emit_signal("text_entered", line.text)
+						LineEditToReturn.emit_signal("text_submitted", line.text)
 				
 				LineEditToReturn = null
 				set_process(false)
@@ -61,7 +61,7 @@ func _process(_delta):
 				LineEditToReturn.text = line.text
 				LineEditToReturn.emit_signal("text_changed", line.text)
 				if LineEditToReturn.get_parent() is SpinBox:
-					LineEditToReturn.emit_signal("text_entered", line.text)
+					LineEditToReturn.emit_signal("text_submitted", line.text)
 			
 			LineEditToReturn = null
 			set_process(false)
@@ -75,10 +75,10 @@ func popup_text_edit(title : String, line_to_return : LineEdit):
 	self.LineFont = line_to_return.get_font("font")
 	self.MaxLength = line_to_return.max_length
 	
-	line.caret_position = line.text.length()
+	line.caret_column = line.text.length()
 	
 	var f = get_font("font").get_height() 
-	line.rect_min_size = Vector2(0, f * 2.5)
+	line.custom_minimum_size = Vector2(0, f * 2.5)
 	line_style.content_margin_left = f * 0.75
 	line_style.content_margin_right = -f * 0.75
 	
@@ -119,7 +119,7 @@ func _set_max_length(val : int):
 func _set_line_font(val : Font):
 	if is_ready:
 		LineFont = val
-		line.add_font_override("font", val)
+		line.add_theme_font_override("font", val)
 
 func _on_LineEdit_text_changed(new_text):
 	if LineEditToReturn:

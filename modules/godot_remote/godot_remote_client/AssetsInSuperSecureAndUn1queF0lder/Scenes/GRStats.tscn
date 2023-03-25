@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Fonts/Roboto-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Fonts/Roboto-Bold.ttf" type="FontFile" id=1]
 [ext_resource path="res://AssetsInSuperSecureAndUn1queF0lder/Scripts/GRStats.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-extra_spacing_top = -1
-extra_spacing_bottom = -1
+spacing_top = -1
+spacing_bottom = -1
 font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=2]
@@ -21,8 +21,8 @@ bg_color = Color( 0, 0, 0, 0.34902 )
 corner_detail = 1
 
 [node name="GRStats" type="PanelContainer"]
-margin_right = 151.0
-margin_bottom = 44.0
+offset_right = 151.0
+offset_bottom = 44.0
 mouse_filter = 2
 theme = SubResource( 2 )
 custom_styles/panel = SubResource( 3 )
@@ -32,55 +32,55 @@ __meta__ = {
 }
 
 [node name="Grid" type="GridContainer" parent="."]
-margin_left = 2.0
-margin_right = 151.0
-margin_bottom = 44.0
+offset_left = 2.0
+offset_right = 151.0
+offset_bottom = 44.0
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_constants/vseparation = 0
-custom_constants/hseparation = 4
+custom_constants/v_separation = 0
+custom_constants/h_separation = 4
 columns = 3
 
 [node name="FPS" type="Label" parent="Grid"]
-margin_right = 86.0
-margin_bottom = 22.0
+offset_right = 86.0
+offset_bottom = 22.0
 size_flags_vertical = 1
 text = "FPS:231"
 
 [node name="FPS_min" type="Label" parent="Grid"]
-margin_left = 90.0
-margin_right = 112.0
-margin_bottom = 22.0
+offset_left = 90.0
+offset_right = 112.0
+offset_bottom = 22.0
 size_flags_vertical = 1
 text = "21"
 
 [node name="FPS_max" type="Label" parent="Grid"]
-margin_left = 116.0
-margin_right = 149.0
-margin_bottom = 22.0
+offset_left = 116.0
+offset_right = 149.0
+offset_bottom = 22.0
 size_flags_vertical = 1
 text = "124"
 
 [node name="Ping" type="Label" parent="Grid"]
-margin_top = 22.0
-margin_right = 86.0
-margin_bottom = 44.0
+offset_top = 22.0
+offset_right = 86.0
+offset_bottom = 44.0
 size_flags_vertical = 1
 text = "PING:321"
 
 [node name="Ping_min" type="Label" parent="Grid"]
-margin_left = 90.0
-margin_top = 22.0
-margin_right = 112.0
-margin_bottom = 44.0
+offset_left = 90.0
+offset_top = 22.0
+offset_right = 112.0
+offset_bottom = 44.0
 size_flags_vertical = 1
 text = "12"
 
 [node name="Ping_max" type="Label" parent="Grid"]
-margin_left = 116.0
-margin_top = 22.0
-margin_right = 149.0
-margin_bottom = 44.0
+offset_left = 116.0
+offset_top = 22.0
+offset_right = 149.0
+offset_bottom = 44.0
 size_flags_vertical = 1
 text = "333"

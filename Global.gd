@@ -17,7 +17,7 @@ func load_scene(map_data):
 	map_name = map_data
 	var scene = load(map_data+".tscn")
 	print("MAP NAME ",map_data+".tscn")
-	return scene.instance()
+	return scene.instantiate()
 
 func AddInventoryItem(itemid, amount):
 	for x in range(40):
@@ -40,7 +40,7 @@ func AddInventoryItem(itemid, amount):
 func AddScene(scene):
 	print("Adding scene ", scene)
 	var camera = get_node("/root/base_scene/Camera2D")
-	var addedscene = load(scene).instance()
+	var addedscene = load(scene).instantiate()
 	addedscene.set_position(Vector2(-617,-300))
 	camera.add_child(addedscene)
 
@@ -54,12 +54,12 @@ func AddMap(load_on, mapname):
 	for _i in get_parent().get_children():
 		print("Nodes visible before addMap ", _i)
 	print("Adding map ", mapname)
-	var addedscene = load(mapname).instance()
+	var addedscene = load(mapname).instantiate()
 	#addedscene.set_position(Vector2(-617,-300))
 	get_parent().add_child(addedscene)
 	for _i in get_parent().get_children():
 		print("Nodes visible at addMap ", _i)
-#	var maps = load(mapname).instance().get_children()
+#	var maps = load(mapname).instantiate().get_children()
 #	for i in maps:
 #		load_on.add_child(i)
 #		print('Added ', i)
@@ -72,7 +72,7 @@ func AddMap(load_on, mapname):
 func GoToScene(scene):
 	print("Going to scene ", scene)
 	var nextscene = load(scene)
-	get_tree().change_scene_to(nextscene)
+	get_tree().change_scene_to_packed(nextscene)
 
 func LoadSave(target="Storage.db"):
 	dbname = target

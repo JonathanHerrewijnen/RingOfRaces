@@ -20,8 +20,8 @@ func _ready():
 
 func _on_Button_gui_input(event):
 	print(event)
-	if event == InputEventScreenTouch.CONNECT_ONESHOT:
-		get_tree().change_scene("res://river_intersection_home2.tscn")
+	if event == InputEventScreenTouch.CONNECT_ONE_SHOT:
+		get_tree().change_scene_to_file("res://river_intersection_home2.tscn")
 	
-	#	get_tree().change_scene("res://river_intersection_home2.tscn")
+	#	get_tree().change_scene_to_file("res://river_intersection_home2.tscn")
 	pass # Replace with function body.

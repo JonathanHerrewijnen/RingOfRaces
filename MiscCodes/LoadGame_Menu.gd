@@ -6,7 +6,7 @@ var savegamepath = "res://Savegames"
 func getsave_games(path):
 	var dir = Directory.new()
 	dir.open(path)
-	dir.list_dir_begin()
+	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 
 	while true:
 		var file = dir.get_next()
@@ -27,7 +27,7 @@ func _ready():
 	for item in savegames:
 		var button1 = Button.new()
 		button1.text = item
-		button1.connect("pressed", self, "load_and_play", ["item"])
+		button1.connect("pressed",Callable(self,"load_and_play").bind("item"))
 		button1.show()
 		get_node("ScrollContainer/VBoxContainer").add_child(button1)
 		

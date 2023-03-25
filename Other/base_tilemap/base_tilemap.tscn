@@ -5,16 +5,16 @@
 [ext_resource path="res://MiscCodes/TouchScreenButton.gd" type="Script" id=4]
 [ext_resource path="res://MiscCodes/KinematicBody2D.gd" type="Script" id=5]
 [ext_resource path="res://Other/base_tilemap/init.gd" type="Script" id=6]
-[ext_resource path="res://pictures/gui/buttons/LeftButton.png" type="Texture" id=7]
-[ext_resource path="res://pictures/gui/buttons/instellingen2.png" type="Texture" id=8]
-[ext_resource path="res://pictures/gui/buttons/map.png" type="Texture" id=9]
-[ext_resource path="res://pictures/gui/buttons/inventory.png" type="Texture" id=10]
-[ext_resource path="res://pictures/gui/buttons/TopButtonPressed.png" type="Texture" id=11]
-[ext_resource path="res://pictures/gui/buttons/LeftButtonPressed.png" type="Texture" id=12]
-[ext_resource path="res://pictures/gui/buttons/TopButton.png" type="Texture" id=13]
-[ext_resource path="res://pictures/gui/buttons/crafting_alchemy.png" type="Texture" id=14]
-[ext_resource path="res://pictures/surroundings/bomen/boom_stand3.png" type="Texture" id=15]
-[ext_resource path="res://pictures/gui/buttons/quick_item_button.png" type="Texture" id=16]
+[ext_resource path="res://pictures/gui/buttons/LeftButton.png" type="Texture2D" id=7]
+[ext_resource path="res://pictures/gui/buttons/instellingen2.png" type="Texture2D" id=8]
+[ext_resource path="res://pictures/gui/buttons/map.png" type="Texture2D" id=9]
+[ext_resource path="res://pictures/gui/buttons/inventory.png" type="Texture2D" id=10]
+[ext_resource path="res://pictures/gui/buttons/TopButtonPressed.png" type="Texture2D" id=11]
+[ext_resource path="res://pictures/gui/buttons/LeftButtonPressed.png" type="Texture2D" id=12]
+[ext_resource path="res://pictures/gui/buttons/TopButton.png" type="Texture2D" id=13]
+[ext_resource path="res://pictures/gui/buttons/crafting_alchemy.png" type="Texture2D" id=14]
+[ext_resource path="res://pictures/surroundings/bomen/boom_stand3.png" type="Texture2D" id=15]
+[ext_resource path="res://pictures/gui/buttons/quick_item_button.png" type="Texture2D" id=16]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0
@@ -133,25 +133,25 @@ visibility_mode = 1
 script = ExtResource( 4 )
 
 [node name="dev_statistics" type="MarginContainer" parent="Camera2D"]
-margin_left = -617.0
-margin_top = -300.0
-margin_right = 612.0
-margin_bottom = 297.0
+offset_left = -617.0
+offset_top = -300.0
+offset_right = 612.0
+offset_bottom = 297.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="fps_stats" type="Label" parent="Camera2D/dev_statistics"]
-margin_top = 291.0
-margin_right = 1229.0
-margin_bottom = 305.0
+offset_top = 291.0
+offset_right = 1229.0
+offset_bottom = 305.0
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2( 700, 1200 )
 z_index = 1
 script = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource( 15 )
 flip_h = true
 
@@ -172,4 +172,4 @@ action = "map_interaction"
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveRight" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="pressed" from="Camera2D/Interactive/GameButtons/MoveUp" to="Player" method="_on_TouchScreenButton_pressed"]
 [connection signal="released" from="Player/CollisionShape2D/MapInteraction" to="Player" method="_interaction_process"]
-[connection signal="tween_completed" from="Tween" to="Camera2D" method="_on_Tween_tween_completed"]
+[connection signal="finished" from="Tween" to="Camera2D" method="_on_Tween_tween_completed"]

@@ -22,5 +22,5 @@ godot_remote/server_custom_input_scene/custom_input_scene="res://ControlColorRem
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"
+textures/vram_compression/import_etc2_astc=false
+environment/defaults/default_environment="res://default_env.tres"

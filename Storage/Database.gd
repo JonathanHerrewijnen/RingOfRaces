@@ -1,5 +1,5 @@
 extends Node
-const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
+#const SQLite
 
 var path = "res://Savegames/"
 var db_name = "RingOfRaces"
@@ -19,7 +19,7 @@ class Inventory_structure:
 	var amount = 0
 	var shortdesc = "shortdesc"
 	
-	func _init(id, item_id, item_name, amount, shortdesc):
+	func _init(id,item_id,item_name,amount,shortdesc):
 		self.id = id
 		self.item_id = item_id
 		self.item_name = item_name
@@ -27,7 +27,6 @@ class Inventory_structure:
 		self.shortdesc = shortdesc
 
 func CreateWorldDatabase():
-	var dir = Directory.new()
 	print("Creating new database")
 	#Inventory
 	var player_inventory : Dictionary = Dictionary()
@@ -55,21 +54,16 @@ func CreateWorldDatabase():
 
 func OpenConnection():
 	if(str(OS.get_name()) == "Android"):
-		path = "user://Savegames/"
-		var dir = Directory.new()
-		dir.open("user://")
-		dir.make_dir("Savegames")
+		DirAccess.make_dir_absolute("user://Savegames/")
 	path += Global.dbname
 	self.db = SQLite.new()
-	var file = File.new()
 	self.db.path = path
-	self.db.verbose_mode = verbose
 	var create = false
 	print(path)
 	
 	# This does not seem to work. The file is in the right place, but being recreated everytime. The file is findable in Res:// and C:/ .. But not after the user folder
-	if !file.file_exists(path):
-		print("File not existing, so creating new db")
+	if ResourceLoader.exists(path):
+		print("Database does not exist. Creating a new one.")
 		create = true
 	self.db.open_db()
 	if create:

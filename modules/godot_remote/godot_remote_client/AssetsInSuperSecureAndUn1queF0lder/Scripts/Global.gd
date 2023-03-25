@@ -24,31 +24,31 @@ var VersionChanged : bool = false
 var PreviousVersion : String = ""
 var AppRuns : int = 0
 var TotalAppRuns : int = 0
-var TouchesToOpenSettings : int = 5 setget set_touches_to_open_settings
-var UserRateState : int = RateState.NotNow setget set_user_rate_state
+var TouchesToOpenSettings : int = 5 : set = set_touches_to_open_settings
+var UserRateState : int = RateState.NotNow : set = set_user_rate_state
 
-var device_id : String = "" setget set_device_id
-var connection_type : int = 0 setget set_con_type
-var ip : String = "127.0.0.1" setget set_ip
-var port : int = 52341 setget set_port
-var stretch_mode : int = 0 setget set_stretch_mode
-var target_send_fps : int = 60 setget set_target_send_fps
-var texture_filtering : bool = true setget set_texture_filtering
-var password : String = "" setget set_password
-var sync_viewport_orientation : bool = true setget set_sync_viewport_orientation
-var sync_viewport_aspect_ratio : bool = true setget set_sync_viewport_aspect_ratio
-var keepscreenon : bool = false setget set_keep_screen_on
-var capture_input_when_custom_scene : bool = false setget set_capture_input_when_custom_scene
+var device_id : String = "" : set = set_device_id
+var connection_type : int = 0 : set = set_con_type
+var ip : String = "127.0.0.1" : set = set_ip
+var port : int = 52341 : set = set_port
+var stretch_mode : int = 0 : set = set_stretch_mode
+var target_send_fps : int = 60 : set = set_target_send_fps
+var texture_filtering : bool = true : set = set_texture_filtering
+var password : String = "" : set = set_password
+var sync_viewport_orientation : bool = true : set = set_sync_viewport_orientation
+var sync_viewport_aspect_ratio : bool = true : set = set_sync_viewport_aspect_ratio
+var keepscreenon : bool = false : set = set_keep_screen_on
+var capture_input_when_custom_scene : bool = false : set = set_capture_input_when_custom_scene
 
-var show_stats : int = StatInfoState.Hidden setget set_show_stats
+var show_stats : int = StatInfoState.Hidden : set = set_show_stats
 
-var override_server_settings : bool = false setget set_override_settings
-var sync_server_settings : bool = false setget set_sync_server_settings
-var server_video_stream : bool = true setget set_server_video_stream
-var server_compression_type : int = 1 setget set_server_compression_type
-var server_jpg_quality : int = 80 setget set_server_jpg_quality
-var server_render_scale : float = 0.3 setget set_server_render_scale
-var server_skip_fps : int = 0 setget set_server_skip_fps
+var override_server_settings : bool = false : set = set_override_settings
+var sync_server_settings : bool = false : set = set_sync_server_settings
+var server_video_stream : bool = true : set = set_server_video_stream
+var server_compression_type : int = 1 : set = set_server_compression_type
+var server_jpg_quality : int = 80 : set = set_server_jpg_quality
+var server_render_scale : float = 0.3 : set = set_server_render_scale
+var server_skip_fps : int = 0 : set = set_server_skip_fps
 
 func get_random_hash(length : int = 6) -> String:
 	return str(randi() * randi()).md5_text().substr(0,length)
@@ -73,13 +73,13 @@ func _ready():
 	device_id = get_random_hash()
 	
 	if OS.has_feature("standalone") and not OS.has_feature("mobile"):
-		OS.window_size = Vector2(1280, 720)
+		get_window().size = Vector2(1280, 720)
 	
 	_load_settings()
 	
 	GodotRemote.create_remote_device(C.GodotRemote_DEVICE_CLIENT)
 	
-	var d = GodotRemote.get_device()
+	var d = GodotRemote.get_output_device()
 	d.capture_when_hover = false
 	
 	_set_all_values()
@@ -87,7 +87,7 @@ func _ready():
 	_add_runs()
 	#GodotRemote.set_log_level(GodotRemote.LL_Debug)
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	if Billings:
 		Billings._init_billings()
 
@@ -97,7 +97,7 @@ func _add_runs():
 	_save_settings()
 
 func _setup_notifications_style():
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	var s = GodotRemote.notifications_style
 	s.panel_style = load("res://AssetsInSuperSecureAndUn1queF0lder/Styles/NotificationPanelStyle.tres")
 	s.close_button_theme = load("res://AssetsInSuperSecureAndUn1queF0lder/Styles/MainTheme.tres")
@@ -118,7 +118,7 @@ func _notification(what):
 			_save_settings()
 
 func _set_all_values():
-	var dev = GodotRemote.get_device()
+	var dev = GodotRemote.get_output_device()
 	var i_w : int = dev.get_status()
 	if i_w == C.GRDevice_STATUS_WORKING:
 		dev.stop()
@@ -187,7 +187,7 @@ func _save_settings():
 	
 	var err = f.open(SAVE_FILE, File.WRITE)
 	if err == OK:
-		f.store_string(to_json(d))
+		f.store_string(JSON.new().stringify(d))
 		f.close()
 
 func _load_settings():
@@ -199,7 +199,9 @@ func _load_settings():
 		if err == OK:
 			var txt = f.get_as_text()
 			f.close()
-			var d = parse_json(txt)
+			var test_json_conv = JSON.new()
+			test_json_conv.parse(txt)
+			var d = test_json_conv.get_data()
 			
 			PreviousVersion = _safe_get_from_dict(d, "m_version", get_version()) 
 			VersionChanged = PreviousVersion != get_version()
